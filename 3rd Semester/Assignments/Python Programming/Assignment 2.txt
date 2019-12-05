@@ -1,0 +1,142 @@
+1) Find the largest of three numbers :
+num1=int(input("Enter the first number : "))
+num2=int(input("Enter the second number : "))
+num3=int(input("Enter the third number : "))
+largest=0
+if (num1>num2) and (num1>num3) :
+    largest=num1
+elif (num2>num1) and (num2>num3) :
+    largest=num2
+else :
+    largest=num3
+print("The largest of the three numbers is : ",largest)
+
+
+2) Find the smallest of three numbers :
+num1=int(input("Enter the first number : "))
+num2=int(input("Enter the second number : "))
+num3=int(input("Enter the third number : "))
+smallest=0
+if (num1<num2) and (num1<num3) :
+    smallest=num1
+elif (num2<num1) and (num2<num3) :
+    smallest=num2
+else :
+    smallest=num3
+print("The largest of the three numbers is : ",smallest)
+
+
+3) Read the list of fruits and perform certain steps :
+fruits=list(input("Enter a certain number of friuts : ").split(","))
+if len(fruits)>4 :
+    fruits.append("Peach")
+    print("Excellent")
+if "Banana" in fruits :
+    fruits[-1]="Strawberry"
+    print("Good")
+if "Apple" in fruits :
+    fruits.remove(fruits[-1])
+    print("Average")
+else :
+    print("Bad")
+
+
+4) Read a variable, find whether it is number or string :
+var=input("Enter a number or a string : ")
+if var.isnumeric():
+    print("You have entered a number")
+elif var.isalpha() :
+    if var.isupper() :
+        print("You have entered a string which is in upper case")
+    else :
+        print("You have entered a string which is in lower case")
+else :
+    print("You have entered something else")
+
+
+5) Find those numbers which are divisible by 9 and multiples of 5 :
+range=int(input("Enter a range : "))
+i=1
+while i<range :
+    if (i%9==0) and (i%5==0) :
+        print(i)
+    i+=1  
+
+
+6) Display the multiplication table from 1 to n in the form 1*1 = 1 ...... :
+n=int(input("Enter a value for n : "))
+for val in range(1,n+1) :
+    for i in range(1,11) :
+        print(val," x  ",i," = ",(val*i))
+
+
+7) Display a pyramid of stars depending on the number of rows :
+n=int(input("Enter the number of rows : "))
+for i in range(0,n):
+    for j in range(0, i+1):
+        print("* ",end="")
+    print()
+    
+for i in range(0,n):
+    for j in range(n,i,-1):
+        print("* ", end="")
+    print()
+
+
+8) Read a list of numbers and display the even numbers and odd numbers separately and sum them :
+num=list(input("Enter the numbers : ").split(","))
+num=list(map(int,num))
+num1=list(())
+num2=list(())
+for i in range(1,len(num)+1):
+    if i%2==0 :
+        num1.append(i)
+    else :
+        num2.append(i)
+print("List of even numbers : ",num1)
+print("List of odd numbers : ",num2)
+sum1=sum(num1)
+sum2=sum(num2)
+print("Sum of even numbers = ",sum1)
+print("Sum of odd numbders = ",sum2)
+
+
+9) Read a list of numbers and display the numbers whose sum of individual digits is an even
+number :
+for n in range(10,20):
+	m=n
+	sod=0
+	while(n>0):
+	    num=n%10
+	    sod=sod+num
+	    n=n//10
+	if(sod%2==0):
+		print(m,"")
+
+
+10) Check whether an alphabet of a string inputted by the user is a vowel or consonant :
+str=input("Enter a string : ")
+for i in str:
+	if((i=='a') or (i=='e') or (i=='i') or (i=='o') or (i=='u')):
+		print(i," is a vowel")
+	else:
+		print(i,"is a consonant")
+
+
+11) Check whether a string inputted by the user is representing an integer or not :
+num = input("Enter a value : ")
+if (num.isdigit()):
+    print("It is an integer")
+else:
+    print("It is not an integer")
+
+
+12) Display a pyramid of stars depending on the number of rows :
+n=int(input("Enter the number of rows : "))
+for i in range(0,n):
+    for j in range(0, i+1):
+        print("* ",end="")
+    print()
+
+
+

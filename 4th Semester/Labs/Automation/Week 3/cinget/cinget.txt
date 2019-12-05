@@ -1,0 +1,18 @@
+set history filename cinget.txt
+set history save
+set history save on
+b main
+r
+disp c
+disp c2
+n
+n
+n
+n
+n
+n
+n
+n
+q
+n
+q

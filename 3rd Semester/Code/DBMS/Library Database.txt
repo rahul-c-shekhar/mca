@@ -1,0 +1,49 @@
+create table library_branch(branch_id varchar2(10) primary key, branch_name varchar2(20), address varchar2(30));
+
+create table publisher(name varchar2(20) primary key, address varchar2(30), phone number(10));
+
+create table book(book_id varchar2(10) primary key, title varchar2(20), publisher_name varchar2(20) references publisher(name), pub_year number(4));
+
+create table book_authors(author_name varchar2(20), book_id varchar2(10) references book(book_id) on delete cascade);
+
+create table book_copies(book_id varchar2(10) references book(book_id) on delete cascade, branch_id varchar2(10) references library_branch(branch_id) on delete cascade, no_of_copies number(10));
+
+create table book_lending(book_id varchar2(10) references book(book_id) on delete cascade, branch_id varchar2(10) references library_branch(branch_id) on delete cascade, card_no varchar2(10) primary key, date_out date, due_date date);
+
+
+insert into library_branch values('&branch_id','&branch_name','&address');
+
+insert into publisher values('&name','&address','&phone');
+
+insert into book values('&book_id','&title','&publisher_name','&pub_year');
+
+insert into book_authors values ('&author_name','&book_id');
+
+insert into book_copies values('&book_id','&branch_id','&no_of_copies');
+
+insert into book_lending values('&book_id','&branch_id','&card_no','&date_out','&due_date');
+
+
+1)
+select B.BOOK_ID, B.TITLE, B.PUBLISHER_NAME, A.AUTHOR_NAME, C.NO_OF_COPIES,L.BRANCH_ID from book B, book_authors A, book_copies C, library_branch L where B.book_id=A.book_id and B.book_id=C.book_id and L.branch_id=C.branch_id;
+
+2)
+select card_no from book_lending where date_out between '01-01-2017' and '01-07-2017' group by card_no having count(*)>3;
+
+select card_no from book_lending where date_out between '01-01-2017' and '01-07-2017' group by card_no;
+
+3)
+delete from book where book_id='B_03';
+
+4)
+create view V_PUBLICATION as select pub_year from book;
+
+5)
+create view V_BOOKS as select B.book_id, B.title, C.no_of_copies from book B, book_copies C, library_branch L where B.book_id=C.book_id and C.branch_id=L.branch_id;
+
+
+
+
+
+
+

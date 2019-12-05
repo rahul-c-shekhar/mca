@@ -1,0 +1,122 @@
+Date : 31/01/2019
+
+TESTING :
+
+--> In order to make sure that the application is working according to customer requirement we have to perform testing.
+
+AUTOMATION :
+
+--> Performing any task using a tool or a machine is called automation
+
+Advantages :
+- Saves Time
+- Faster
+- Less resources
+- Restless
+- Multi task
+
+Disadvantages :
+- Initial investment is more
+- Usually used for long term projects
+- Requires additional skills set
+- Constant maintenance
+
+
+--> Testing the functionalities of an application tool using automated tools is called automation testing.
+
+
+SELENIUM :
+
+--> Selenium is a FREE and OPEN SOURCE automation tool which is used to automate WEB BASED applications.
+
+Advantages :
+- Free
+- Open Source
+- Can automate web based applications such as Facebook, Gmail, Flipkart, etc.,
+- Supports 14 different programming languages like Java, C#, Ruby, Python, etc.,
+- Supports multiple platforms like Windows, Linux and Mac OS
+- It can be run on all the browsers like Chrome, Firefox, etc.,
+
+Architecture :
+Language binding <--> Web driver(API) <--> Driver executable files <--> Browsers
+
+Java Selenium Architecture :
+--> Methods of Search Context Interface :
+- findElement()
+- findElements()
+
+--> Methods of Web Driver Interface :
+- get()
+- getTitle()
+- getCurrentUrl()
+- getPageSource()
+- findElement()
+- findElements()
+- getWindowHandle()
+- getWindowHandles()
+- switchTo()
+- manage()
+- navigate()
+- close()
+- quit()
+
+--> Methods of Take Screenshot Interface :
+- getScreenShotAs()
+
+--> Methods of Javascript Executor :
+- executeScript()
+- executeAsyncScript()
+
+--> Steps to install Selenium :
+- Download the selenium jar file and the driver executable files from the website : https://www.seleniumhq.org/download/
+- Extract all the driver executable files
+- In eclipse create a new java project with some name
+- Under the java project create 2 folders with the names drivers and jars
+- Store all the extracted driver executable files under drivers folder
+- Store the Selenium jar file under jars folder
+- Associate the jar file with current java project
+    To associate the jar file with java project :
+    - Expand jars folder
+    - Right click on the jar file
+    - Go to build path
+    - Click on Add to Build Path
+
+
+--> Before performing action on any elements we have to perform the following steps :
+- Inspect the element
+- Identify/Locate the element
+- Find the element
+- Perform the action
+
+- Inspect the element :
+    In order to inspect the element :
+    - Right click on the element
+    - Click on the Inspect element option which will return the source code of that element
+    --> Note : For security purpose in some of the applications right click option will be disabled,
+           In such cases to inspect the element :
+           - Press F12
+           - Click on inspect element icon
+           - Click on the element present on the web page
+
+--> Locators (very important in Selenium) :
+- Locators are the static methods which are used to identify the elements which are present on the web page.
+- All these locators are present in a class called "By" which is an abstract class
+- There are 8 types of locators and all types of locators takes a single argument of type string.
+- The different types of locators are :
+1) id(str)
+2) name(str)
+3) className(str)
+4) tagName(str)
+5) linkText(str)
+6) partialLinkText(str)
+7) cssSelector(str)
+8) xPath(str)
+
+--> Note : Out of all the locators id(), name() and className() are available as attributes of an element.
+
+--> Note : 
+- To handle the single element we use findElement() method
+- In findElement() if the specified locator is not matching with any elements then it will throw NoSuchElement exception
+- In findElement() if the specified locator is matching with multiple elements then is returns the address of the first matching element
+- If the specified element is a link then we can identify that element by using locator linkText()
+- If the link is partially dynamic then we can identify that element by using partialLinkText()

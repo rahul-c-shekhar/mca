@@ -1,0 +1,492 @@
+Name : Rahul C Shekhar
+SRN : PES1201802486
+
+
+1) Create a collection called employee that contains id, name, salary and role.
+
+> db.createCollection('Employee')
+
+--> { "ok" : 1 }
+
+---------------------------------------------------------------------------------------------------------
+
+2) Insert 10 documents.
+
+> db.Employee.insert(
+    [
+        {
+            name: "Rahul",
+            salary: 40000,
+            role: "A"
+        },
+        {
+            name: "Chirag",
+            salary: 30000,
+            role: "B"
+        },
+        {
+            name: "Satish",
+            salary: 45000,
+            role: "C"
+        },
+        {
+            name: "Rahul",
+            salary: 40000,
+            role: "A"
+        },
+        {
+            name: "Akshita",
+            salary: 29000,
+            role: "D"
+        },
+        {
+            name: "Vijay",
+            salary: 40000,
+            role: "D"
+        },
+        {
+            name: "Vaidehi",
+            salary: 30000,
+            role: "G"
+        },
+        {
+            name: "Anuraag",
+            salary: 45000,
+            role: "I"
+        },
+        {
+            name: "Vishnu",
+            salary: 10000,
+            role: "I"
+        }
+    ]
+)
+
+--> BulkWriteResult({
+	"writeErrors" : [ ],
+	"writeConcernErrors" : [ ],
+	"nInserted" : 9,
+	"nUpserted" : 0,
+	"nMatched" : 0,
+	"nModified" : 0,
+	"nRemoved" : 0,
+	"upserted" : [ ]
+})
+
+---------------------------------------------------------------------------------------------------------
+
+3) Update salary of employee whose name is AAA by 8000.
+
+> db.Employee.update(
+    {
+        name: "Vishnu"
+    },
+    {
+        $inc: {
+            "salary": 8000
+        }    
+    }
+)
+
+--> WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+---------------------------------------------------------------------------------------------------------
+
+4) Update salary of all Employee by giving an increment of 4500.
+
+> db.Employee.updateMany(
+    {},
+    {
+        $inc: {
+            "salary": 4500
+        }
+    }
+)
+
+--> { "acknowledged" : true, "matchedCount" : 9, "modifiedCount" : 9 }
+
+---------------------------------------------------------------------------------------------------------
+
+5) Update role of ‘NNN’ as ‘Head’ and ‘Prof’.
+
+> db.Employee.update(
+    {
+        name: "Anuraag"
+    },
+    {
+        $set: {
+            role: ["Head", "Prof"]
+        }
+    }
+)
+
+--> WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+---------------------------------------------------------------------------------------------------------
+
+6) Add a new field called ‘Remark’ to the document that contains the name ‘BBB’ with the value ‘VC’.
+
+> db.Employee.update(
+    {
+        name: "Vaidehi"
+    },
+    {
+        $addToSet: {
+            remark: "VC"
+        }
+    }
+)
+
+--> WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+---------------------------------------------------------------------------------------------------------
+
+7) Without inserting a document add a document with id as 11, name ‘XXX’, salary 10000, role ‘coach’.
+
+> db.Employee.update(
+    {
+        name: "XXX"
+    },
+    {
+        id: 11,
+        name: "XXX",
+        salary: 10000,
+        role: "coach"
+    },
+    {
+        upsert: true
+    }
+)
+
+--> WriteResult({
+	"nMatched" : 0,
+	"nUpserted" : 1,
+	"nModified" : 0,
+	"_id" : ObjectId("5c63f715fd9f0ca1da830141")
+})
+
+---------------------------------------------------------------------------------------------------------
+
+8) Create a collection called restaurants that contains id, name, address – building, Co-ordinates[latitude,
+longitude], street, city, zipcode, cuisine, ratings – date, grade, score
+
+> db.createCollection('Restaurant')
+
+--> { "ok" : 1 }
+
+---------------------------------------------------------------------------------------------------------
+
+9) Insert 10 documents.
+
+> db.Restaurant.insert(
+    [
+        {
+            name: "Masala Dosa",
+            address: {
+                building: "101",
+                Crdinates: [20, 30],
+                street: "Basaveshwarnagar",
+                city: "Bengaluru",
+                zipcode: 560085
+            },
+            cuisine: "South",
+            ratings: {
+                date: ISODate(),
+                grade: "A",
+                score: "100"
+            }
+        },
+        {
+            name: "Vada Pav",
+            address: {
+                building: "102",
+                Crdinates: [20, 30],
+                street: "Rajajinagar",
+                city: "Bengaluru",
+                zipcode: 560050
+            },
+            cuisine: "North",
+            ratings: {
+                date: ISODate(),
+                grade: "A",
+                score: "100"
+            }
+        },
+        {
+            name: "Pie",
+            address: {
+                building: "103",
+                Crdinates: [20, 30],
+                street: "Trinity",
+                city: "Bengaluru",
+                zipcode: 560010
+            },
+            cuisine: "continental",
+            ratings: {
+                date: ISODate(),
+                grade: "A",
+                score: "100"
+            }
+        },
+        {
+            name: "Noodles",
+            address: {
+                building: "104",
+                Crdinates: [20, 30],
+                street: "Jayanagar",
+                city: "Bengaluru",
+                zipcode: 560025
+            },
+            cuisine: "chinese",
+            ratings: {
+                date: ISODate(),
+                grade: "A",
+                score: "100"
+            }
+        },
+        {
+            name: "Babycorn Manchurian",
+            address: {
+                building: "105",
+                Crdinates: [20, 30],
+                street: "Vijayanagar",
+                city: "Bengaluru",
+                zipcode: 560033
+            },
+            cuisine: "chinese",
+            ratings: {
+                date: ISODate(),
+                grade: "A",
+                score: "100"
+            }
+        },
+        {
+            name: "Sushi",
+            address: {
+                building: "106",
+                Crdinates: [20, 30],
+                street: "Brigade Road",
+                city: "Bengaluru",
+                zipcode: 560030
+            },
+            cuisine: "japanese",
+            ratings: {
+                date: ISODate(),
+                grade: "A",
+                score: "100"
+            }
+        },
+        {
+            name: "Curd Rice",
+            address: {
+                building: "107",
+                Crdinates: [20, 30],
+                street: "Majestic",
+                city: "Bengaluru",
+                zipcode: 560001
+            },
+            cuisine: "all",
+            ratings: {
+                date: Date(),
+                grade: "A",
+                score: "100"
+            }
+        },
+        {
+            name: "Pasta",
+            address: {
+                building: "108",
+                Crdinates: [20, 30],
+                street: "Banashankari",
+                city: "Bengaluru",
+                zipcode: 560085
+            },
+            cuisine: "italian",
+            ratings: {
+                date: Date(),
+                grade: "A",
+                score: "100"
+            }
+        },
+        {
+            name: "Soba",
+            address: {
+                building: "101",
+                Crdinates: [20, 30],
+                street: "Brigade Road",
+                city: "Bengaluru",
+                zipcode: 560030
+            },
+            cuisine: "japanese",
+            ratings: {
+                date: ISODate(),
+                grade: "A",
+                score: "100"
+            }
+        }
+    ]
+)
+
+--> BulkWriteResult({
+	"writeErrors" : [ ],
+	"writeConcernErrors" : [ ],
+	"nInserted" : 9,
+	"nUpserted" : 0,
+	"nMatched" : 0,
+	"nModified" : 0,
+	"nRemoved" : 0,
+	"upserted" : [ ]
+})
+
+---------------------------------------------------------------------------------------------------------
+
+10)	Display the fields id, name, cuisine for all the documents in the collection restaurants.
+
+> db.Restaurant.find(
+    {},
+    {
+        _id: 1,
+        name: 1,
+        cuisine: 1
+    }
+).pretty()
+
+--> {
+	"_id" : ObjectId("5c652296bd0c7dbbd463fa6e"),
+	"name" : "Masala Dosa",
+	"cuisine" : "South"
+}
+{
+	"_id" : ObjectId("5c652296bd0c7dbbd463fa6f"),
+	"name" : "Vada Pav",
+	"cuisine" : "North"
+}
+{
+	"_id" : ObjectId("5c652296bd0c7dbbd463fa70"),
+	"name" : "Pie",
+	"cuisine" : "continental"
+}
+{
+	"_id" : ObjectId("5c652296bd0c7dbbd463fa71"),
+	"name" : "Noodles",
+	"cuisine" : "chinese"
+}
+{
+	"_id" : ObjectId("5c652296bd0c7dbbd463fa72"),
+	"name" : "Babycorn Manchurian",
+	"cuisine" : "chinese"
+}
+{
+	"_id" : ObjectId("5c652296bd0c7dbbd463fa73"),
+	"name" : "Sushi",
+	"cuisine" : "japanese"
+}
+{
+	"_id" : ObjectId("5c652296bd0c7dbbd463fa74"),
+	"name" : "Curd Rice",
+	"cuisine" : "all"
+}
+{
+	"_id" : ObjectId("5c652296bd0c7dbbd463fa75"),
+	"name" : "Pasta",
+	"cuisine" : "italian"
+}
+{
+	"_id" : ObjectId("5c652296bd0c7dbbd463fa76"),
+	"name" : "Soba",
+	"cuisine" : "japanese"
+}
+
+
+---------------------------------------------------------------------------------------------------------
+
+11)	Display all restaurants that sell ‘chinese’
+
+> db.Restaurant.find(
+    {
+        cuisine: "chinese"
+    }
+).pretty()
+
+--> {
+	"_id" : ObjectId("5c652296bd0c7dbbd463fa71"),
+	"name" : "Noodles",
+	"address" : {
+		"building" : "104",
+		"Crdinates" : [
+			20,
+			30
+		],
+		"street" : "Jayanagar",
+		"city" : "Bengaluru",
+		"zipcode" : 560025
+	},
+	"cuisine" : "chinese",
+	"ratings" : {
+		"date" : ISODate("2019-02-14T08:11:02.689Z"),
+		"grade" : "A",
+		"score" : "100"
+	}
+}
+{
+	"_id" : ObjectId("5c652296bd0c7dbbd463fa72"),
+	"name" : "Babycorn Manchurian",
+	"address" : {
+		"building" : "105",
+		"Crdinates" : [
+			20,
+			30
+		],
+		"street" : "Vijayanagar",
+		"city" : "Bengaluru",
+		"zipcode" : 560033
+	},
+	"cuisine" : "chinese",
+	"ratings" : {
+		"date" : ISODate("2019-02-14T08:11:02.689Z"),
+		"grade" : "A",
+		"score" : "100"
+	}
+}
+
+---------------------------------------------------------------------------------------------------------
+
+12)	Find the restaurants which locate in latitude value less than - 95.754168.
+
+> db.Restaurant.find(
+    {},
+    {
+        arrayFilters: [{
+            Crdinates: {
+                $lt: 95.754168
+            }
+        }]
+    }
+)
+
+--> { "_id" : ObjectId("5c652296bd0c7dbbd463fa6e") }
+{ "_id" : ObjectId("5c652296bd0c7dbbd463fa6f") }
+{ "_id" : ObjectId("5c652296bd0c7dbbd463fa70") }
+{ "_id" : ObjectId("5c652296bd0c7dbbd463fa71") }
+{ "_id" : ObjectId("5c652296bd0c7dbbd463fa72") }
+{ "_id" : ObjectId("5c652296bd0c7dbbd463fa73") }
+{ "_id" : ObjectId("5c652296bd0c7dbbd463fa74") }
+{ "_id" : ObjectId("5c652296bd0c7dbbd463fa75") }
+{ "_id" : ObjectId("5c652296bd0c7dbbd463fa76") }
+
+---------------------------------------------------------------------------------------------------------
+
+13)	Find the days on which the restaurants that sell Continental were graded.
+
+> db.Restaurant.find(
+    {
+        cuisine: "continental"
+    },
+    {
+        "ratings.date": 1
+    }
+)
+
+--> { "_id" : ObjectId("5c652296bd0c7dbbd463fa70"), "ratings" : { "date" : ISODate("2019-02-14T08:11:02.689Z") } }
+
+---------------------------------------------------------------------------------------------------------

@@ -1,0 +1,28 @@
+set history filename demo.txt
+set history save
+set history save on
+b main
+b func
+r
+info b
+disp X
+n
+n
+n
+n
+disp result
+disp answer
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+q
+n
+q

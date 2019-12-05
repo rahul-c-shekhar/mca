@@ -1,0 +1,28 @@
+Date : 01/02/2019
+
+--> Interview Questions :
+- What are the different types of XPath :
+    - Absolute XPath
+    - Relative XPath
+
+- What is the difference between "/" and "//" :
+    - "/" represents immediate child
+    - "//" represents any child
+
+- Derive the XPath expression which matches with :
+    i)  All the links :
+            - //a
+    ii) All the images :
+            - //img
+
+
+
+--> Assignment :
+- Derive the cssSelector expression for all the elements which are present in Facebook login page.  Eg. : Email or Phone ---> input[type='email'].
+- Derive the XPath expression to identify the elements which are present on the Facebook login page
+- Derive the XPath to identify the following elements which are present in Selenium Downloads page :
+    - C#
+    - Ruby
+    - Python
+    - Javascript
+- Write a script to select your DOB from the List box present in Facebook login / signup page

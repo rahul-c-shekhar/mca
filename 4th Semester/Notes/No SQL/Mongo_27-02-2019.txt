@@ -1,0 +1,68 @@
+--> Select a subset of an array to return based on the specified condition.
+ > {$filter:{input:<array>, as:<string>, cond:<expression>}}
+
+> db.Sales.aggregate([
+    {$project : {_id:1, year : {$year : "$date"}
+    }}
+])
+
+> db.Sales.aggregate([
+    {$group : {_id : {year : {$year : "$date"}}, totalAmt:{$sum:{$multiply:["$price", "$qty"]}}}}
+])
+
+--> Evaluates a series of case expressions.
+> $switch : {
+    branches : [
+        { case : <expression>, then : <expression> },
+        { case : <expression>, then : <expression> },
+        ....
+    ],
+    default : <expression>
+}
+
+> db.Grade.aggregate([
+    {
+        $project:
+        {
+            "name" : 1,
+            "summary" :
+            {
+                $switch :
+                {
+                    branches : [
+                        { case : {$gte : [{$avg : "$scores"}, 90]}, then : "Doing Great"},
+                        { case : {$and : [{$gte : [{$avg : "$scores"}, 80]}, {$lt : [{$avg : "scores"}, 90]}]}, then : "Doing pretty well"},
+                        { case : {$lt : [{$avg : "$scores"}, 80]}, then : "Needs improvement"}
+                    ],
+                    default : "No scores found"
+                }
+            }
+        }
+    }
+])
+
+> db.Sales.aggregate([
+    {$project : {_id : 1, item :1, totalAmt:{$sum:{$multiply:["$price", "$qty"]}}}},
+    {$out:"SalesDetails"}
+])
+
+> db.SalesDetails.aggregate([
+    {
+        $project:
+        {
+            item : 1,
+            "summary" :
+            {
+                $switch :
+                {
+                    branches : [
+                        { case : {$gt : ["$totalAmt", 100]}, then : "Too costly"},
+                        { case : {$and : [{$gte : ["$totalAmt", 75]}, {$lt : ["$totalAmt", 100]}]}, then : "Should be reduced"},
+                        { case : {$lt : ["$totalAmt", 50]}, then : "Affordable"}
+                    ],
+                    default : "Cannot exist"
+                }
+            }
+        }
+    }
+])

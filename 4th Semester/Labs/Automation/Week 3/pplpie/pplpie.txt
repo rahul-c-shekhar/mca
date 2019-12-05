@@ -1,0 +1,16 @@
+set history filename pplpie.txt
+set history save
+set history save on
+b main
+r
+disp result
+n
+n
+n
+n
+n
+n
+n
+q
+n
+q

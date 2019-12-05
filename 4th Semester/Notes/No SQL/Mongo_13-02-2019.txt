@@ -1,0 +1,37 @@
+--> Floor :
+> db.samp.aggregate({$project:{"Floored value " : {$floor:"$price"}}})
+
+
+--> Compares two values ($cmp) :
+> {$cmp:[<expression1>,<expression2>]}
+> db.Sales.aggregate({$project : {_id : 0, item : 1, status : {$cmp : ["$quantity", 10]}}})
+> db.Sales.aggregate({$project : {_id : 0, item : 1, status : {$cmp : ["$item", "jkl"]}}})
+
+--> $sum :
+- Calculates and returns the sum of numeric values, $sum ignores non-numeric values
+> db.Sales.aggregate([
+    {$group :
+            {_id : {year: {$year : "$date"}},
+             Total: {$sum : "$qty"}
+            }
+    }
+])
+
+> db.Sales.aggregate([
+    {$group :
+            {_id : {item: {"Pen" : "$item"}},
+             Total: {$sum : "$qty"}
+            }
+    }
+])
+
+> db.marks.aggregate([
+    {$project :
+                { quiztotal : {$sum : "$quizzes"},
+                  labtotal : {$sum : "$labs"},
+                   midterm :1,
+                   final : 1,
+                   total : {$sum : [{$sum :"$quizzes"}, {$sum : "$labs"}, "$midterm", "$final"]}
+                }
+    }
+])

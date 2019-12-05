@@ -1,0 +1,51 @@
+								ASSIGNMENT - 1
+								
+								     DBMS
+
+
+
+Consider the following tables : 
+	Movie (Code, Title, Rating)
+	MovieTheatres (Code, Name, Movie)
+
+Table creation queries :
+
+create table movie(code varchar2(10) NOT NULL,
+title varchar2(20) primary key,
+rating varchar2(5));
+
+
+create table movie_theatres(code varchar2(10) NOT NULL,
+name varchar2(20) NOT NULL,
+movie references movie(title) on delete cascade);
+
+Answer the following queries :
+
+1) List the titles of all Movies :
+
+-->select title from movie;
+
+
+2) Show all unrated movies :
+
+-->select title from movie where rating='unrated';
+
+
+3) Select all movie theaters that are not currently showing a movie :
+
+-->select * from movie_theatres where trim(movie) is null;
+
+
+4) Select all data from all movie theaters and, additionally, the data from the movie that is being shown in the theater :
+
+-->select mt.code theatre_code, mt.name, mt.movie, m.code movie_code, m.rating from movie_theatres mt, movie m where mt.movie=m.title;
+
+
+
+
+
+
+
+
+									Assignment by,
+											Rahul C Shekhar

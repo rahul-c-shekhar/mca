@@ -1,0 +1,133 @@
+--> Part - A :
+
+
+1) Print the square root of a number :
+num = int(input('Enter a number : '))
+sqrt = lambda x: x ** (1/2)
+print(sqrt(num))
+
+
+2) Solve the expression x+y*z/p :
+numbers = input('Enter a list of 4 numbers : ').split(',')
+numbers = [int(i) for i in numbers]
+exp = lambda x,y,z,p:x + y * z / p
+print(exp(*numbers))
+
+
+3) From a given list filter out only numbers that are divisible by 3 :
+numbers = input('Enter a list of numbers : ').split(',')
+numbers = [int(i) for i in numbers if int(i) % 3 == 0]
+print(numbers)
+
+
+4) Remove the ‘empty’ elements of a literable :
+mylist = input('Enter a list of strings with None : ').split(',')
+mylist = list(filter(None, mylist))
+print(mylist)
+
+
+5) Find only the names that start with 'J' :
+names = input('Enter a list of names : ').split(',')
+names = [i for i in names if i.startswith('j') or i.startswith('J')]
+print(names)
+
+
+6) Compute the product of a list of integers :
+import functools
+product = lambda x, y: x * y
+numbers = input('Enter a list of numbers : ').split(',')
+numbers = [int(i) for i in numbers]
+print(functools.reduce(product, numbers))
+
+
+7) Filter out the vowels from a list :
+vow = lambda x: x not in ['a', 'e', 'i', 'o', 'u']
+strings = input('Enter a list of chracters : ').split(',')
+strings = [i for i in filter(vow, strings)]
+print(strings)
+
+
+--> Part - B :
+
+
+1) Remove vowels from a sentence :
+vowels = ['a', 'e', 'i', 'o', 'u']
+sentence = input('Enter a sentence: ')
+sentence = ''.join([i for i in sentence if i not in vowels])
+print(sentence)
+
+
+2) Take two lists of same kind of input and return a dictionary – first list item as key, second list item as value :
+list_1 = input('Enter some numbers : ').split(',')
+list_2 = input('Enter some strings : ').split(',')
+dictionary = dict(zip(list_1, list_2))
+print(dictionary)
+
+
+3) Change to uppercase in a list :
+upper = input('Enter some strings : ').split(',')
+upper = [i.upper() for i in upper]
+print(upper)
+
+
+4) Change to lowercase in a list : 
+lower = input('Enter some strings : ').split(',')
+lower = [i.lower() for i in lower]
+print(lower)
+
+
+5) Take a matrix as input and return a list with each row placed on after the other :
+n = int(input('Enter no of rows: '))
+matrix = [input('Enter column elements : ').split(',') for i in range(0, n)]
+print(matrix)
+
+
+6) Add two list comprehensions :
+numbers_1 = input('Enter a list of numbers 1 : ').split(',')
+numbers_1 = [int(i) for i in numbers_1]
+numbers_2 = input('Enter a list of numbers 2 : ').split(',')
+numbers_2 = [int(i) for i in numbers_2]
+
+numbers = [x + y for x, y in zip(numbers_1, numbers_2)]
+print(numbers)
+
+
+7) Print the length of each word in a list :
+strings = input('Enter a list of strings : ').split(',')
+lengths = [len(i) for i in strings]
+dictionary = dict(zip(strings, lengths))
+print(dictionary)
+
+
+8) Print the first and last letter of every name in a list :
+strings = input('Enter a list of strings : ').split(',')
+first_last = [i[0] + ' - ' + i[-1] for i in strings]
+print(first_last)
+
+
+9) Print the reverse of each name in a list :
+strings = input('Enter a list of strings : ').split(',')
+reverse_list = [i[::-1] for i in strings]
+print(reverse_list)
+
+
+10) Create a list of all possible pairs of drink and food from the lists ['water', 'tea', 'juice'] and ['ice cream', 'chocolates', 'strawberry'], respectively :
+drinks = ['water', 'tea', 'juice']
+foods = ['ice cream', 'chocolates', 'strawberry']
+
+combo = [[drink + ', ' + food] for drink in drinks for food in foods]
+print(combo)
+
+
+11) Create a list of the squares of the integers from 0 to 9 where the square is greater than 5 and less than 50 :
+square = lambda x: x ** 2
+nums = list(range(0, 10))
+square_list = [square(i) for i in nums if square(i) < 50]
+print(square_list)
+
+
+12) Create a list that contains names that start with a vowel :
+strings = input('Enter a list of names : ').split(',')
+vow = ('a', 'e', 'i', 'o', 'u')
+strings = [i for i in strings if i.startswith(vow)]
+print(strings)

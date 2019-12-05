@@ -1,0 +1,21 @@
+package pes;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class FindElements {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.gecko.driver", "./drivers/geckodriver");
+		WebDriver driver = new FirefoxDriver();
+		driver.manage().window().maximize();
+		driver.get("file:///home/rahul-c-shekhar/Dropbox/MCA/4th%20Semester/Testing%20Seminar/FindElements.html");
+		
+		List<WebElement> allLinks = driver.findElements(By.xpath("//input[@type='checkbox']"));
+	}
+
+}

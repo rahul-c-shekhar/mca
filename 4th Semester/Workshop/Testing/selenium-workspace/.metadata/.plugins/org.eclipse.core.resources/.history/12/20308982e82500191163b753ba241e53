@@ -1,0 +1,21 @@
+package pes;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Orangehrm {
+
+	public static void main(String[] args) {
+		//Open the browser
+		System.setProperty("webdriver.gecko.driver", "./drivers/geckodriver");
+		WebDriver driver = new FirefoxDriver();
+		
+		//Maximize the window
+		driver.manage().window().maximize();
+		
+		//Enter the URL
+		driver.get("https://opensource-demo.orangehrmlive.com/index.php/auth/login");
+		
+	}
+
+}

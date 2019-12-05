@@ -1,0 +1,80 @@
+--> Remove all documents from a collection : 
+    - db.<collection_name>.remove({})
+    
+--> Removes a single document from a collection :
+    - db.<collection_name>.deleteOne(<filter>)
+    - Eg. : db.Students.deleteOne({_id:2})
+
+--> Removes all documents that match the filter from a collection : 
+    - db.<collection_name>.deleteMany(<filter>)
+    - Eg. : db.Students.deleteMany({tags:"camera"})
+
+--> To drop an entire collection :
+    - db.<collection_name>.drop()
+    - Eg. : db.Students.drop()
+
+--> Delete a single document based on the filter and sort criteria, returning the deleted document : 
+    - db.<collection_name>.findOneAndDelete(filter, options)
+    - Eg. : - db.Details.findOneAndDelete({"name" : "M. MMM"})
+
+--> Modify and return a single document :
+    - db.<collection_name>.findAndModify(document)
+    - Eg. : db.Details.findAndModify({query:{_id:1}, update:{$inc:{points:1}}, upsert:true})
+
+--> Calculates aggregate values for the data in a collection or a view :
+    - db.<collection_name>.aggregate(pipeline, options)
+    - Eg. : db.Semfour.aggregate([ {$match: {city:"Bangalore"}}, 
+                                    {$group:{_id:"$_id", total:{$sum:"$age"}}}, {$sort:{total:-1}} ])
+
+--> Filters the documents to pass only the documents that match the specified condition(s) to the next pipeline stage :
+    - {$match : {<query>}}
+    - Eg. : db.Students.aggregate([{$match:{sem:3}}])
+
+--> Groups documents by some specified expression and outputs to the next stage a document for each distinct grouping :
+    - {$group : {_id:<expression>,<field1> : {<accumulator1 : <expression1>}, ...}}
+    - The _id field is mandatory
+    - It does not order the output
+    - Eg. : db.Students.aggregate([ $group:{_id:"$sem"}])
+
+- Create a collection Sales that has id, item, price, qty and date
+
+db.Sales.insert([
+    {
+        _id:1,
+        item:"Pen",
+        price:15,
+        qty:3,
+        date:ISODate()
+    },
+    {
+        _id:2,
+        item:"Pencil",
+        price:5,
+        qty:1,
+        date:ISODate()
+    },
+    {
+        _id:3,
+        item:"Pen",
+        price:20,
+        qty:4,
+        date:ISODate()
+    }
+])
+
+- Group all your documents by year :
+
+db.Sales.aggregate([{$group:{_id: {year:{$year:"$date"}}}}])
+
+- Group by month day and year
+
+db.Sales.aggregate([{$group:{_id:{day:{$dayOfMonth:"$date"}}}}])
+
+db.Sales.aggregate([{$group:{_id:{month:{$month:"$date"}}}}])
+
+db.Sales.aggregate([
+    {$group : {_id:{ month : {$month : "$date"},
+                     day : {$dayOfMonth : "$date"},
+                     year : {$year : "$date"}
+    }}}
+])

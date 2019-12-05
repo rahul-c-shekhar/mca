@@ -1,0 +1,123 @@
+db.Details.insert({
+    _id:1,
+    name:"Rahul C Shekhar",
+    sem:4,
+    contact:
+    {
+        phone:8197292195,
+        email:"rahulcshekharbng@gmail.com"
+    },
+    address:            
+    {
+        permanent:
+        {
+            hno:"141/A",
+            area:"Rajajinagar",
+            pincode:560010
+        },
+        current:
+        {
+            hno:"141/A",
+            area:"Rajajinagar",
+            pincode:560010
+        }
+    }
+})
+
+
+
+db.Details.find(address:
+{
+    permanent:
+    {
+        hno:"141/A"
+    }
+})
+
+
+d1={_id:2,name:"Vaidehi"}
+
+
+var MyDocument=[
+    {_id:2,name:"Vaidehi"},
+    {_id:3,name:"Mythili"}
+]
+
+
+db.Details.update(
+    {
+        _id:2
+    },
+    {
+        name:"Baby"
+    },
+    {upsert:true}
+)
+
+db.Details.replaceOne(
+    {
+        _id:1
+    },db.Employee.update(
+    {
+        name: "Vishnu"
+    },
+    {
+        $set: {
+            "salary": 8000
+        }    
+    }
+)
+    {
+        "contact.phone":7019189487
+    }
+)
+
+
+db.User.insert(
+    {
+        _id:10,
+        status:"false",
+        last_modified:Date(),
+        sem:5
+    }
+)
+
+
+db.User.update(
+    {_id:2},
+    {$currentDate:{last_modified:true, "cancellation_date":{$type:"timestamp"}},
+    $set:{status:"logout", "cancellation_reason":"System crash"}
+    }
+)
+
+
+db.User.update(
+    {
+        _id:1
+    },
+    {
+        $mul:{val:2}
+    }
+)
+
+
+$min
+
+$max
+
+$mul - multiplies the value of the field by the specified amount
+
+$setOnInsert - sets the value of a field if an update results in an insert of a document. Has no effect on update
+               operations that modify existing documents.
+
+
+db.User.update(
+    {
+        _id:10
+    },
+    {
+        $set:{sem:2},
+        $setOnInsert{name:"ABC"}
+    },
+    {upsert:true}
+)

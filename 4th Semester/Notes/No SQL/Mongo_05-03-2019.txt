@@ -1,0 +1,109 @@
+--> Calculate the maximum quiz scores, the maximum lab scores, and the maximum of the final and midterm
+> db.Sales.aggregate([
+    {
+        $group:{
+            _id:"$item",
+            maxTotalAmount: { $max: { $multiply: [ "$price", "$qty"]}},
+            maxQuantity: { $max: "$qty"}
+        }
+    }
+])
+
+> db.Sales.aggregate([
+    {
+        $group: {
+            _id:"$item",
+            minPrice: { $min: "$price"},
+            minQuantity: { $min: "$qty"}
+        }
+    }
+])
+
+--> $cond - Evaluates a boolean expression to return one of the two specified return expressions.
+> {$cond:{if:<boolean-expression>,then:<true-case>,else:<false-case>}}
+or
+> {$cond:[<boo-expression>,<true-case>,<false-case>]}
+
+Set the discount value to 30 if quantity value is >= 100 and 20 if quantity value is < 100
+
+> db.Sales.aggregate([
+    {
+        $project: {
+            item: 1,
+            price: 1,
+            discount: {
+                $cond: { if: { $gte: [ "$qty", 100 ]}, then: 30, else: 20}
+            }
+        }
+    },
+    { $out: "SalesDetails" }
+])
+
+--> $type - Returns a string that specifies the BSON type of the argument
+> {$type:<expression>}
+
+> db.CC.insert([
+    {
+        _id: 0,
+        "a": 8
+    },
+    {
+        _id: 1,
+        "a": [41.63, 88.19]
+    },
+    {
+        _id: 2,
+        "a": { "a" : "apple", "b" : "banana", "c" : "carrot"}
+    },
+    {
+        _id: 3,
+        "a": "caribou"
+    },
+    {
+        _id: 4,
+        "a": NumberLong(71)
+    },
+    {
+        _id: 5,
+        "a": ISODate()
+    },
+    {
+        _id: 6
+    }
+])
+
+> db.CC.aggregate([
+    {
+        $project: {
+            a : { $type: "$a" }
+        }
+    }
+])
+
+--> Rename an existing collection
+> db.adminCommand({ renameCollection: "<db_name>.<collection_name>", to: "<db_name>.<new_collection_name"})
+or
+> db.collection.renameCollection("<new_name">)
+
+> db.adminCommand({ renameCollection: "mca.SalesDetails", to: "mca.Sales_Details"})
+
+--> Drop a database
+> use <database_name>
+> db.runCommand({dropDatabase:1})
+
+--> Create a collection
+> db.runCommand({ create:"<collection_name", capped:<Boolean>,size:<bytes>})
+
+--> Drop a collection
+> db.<collection_name>.drop()
+
+--> limit(number_of_records) - the maximum number of documents to display
+> db.CC.find().limit(5)
+
+--> $count - Returns the count of the documents that match a find() query for the collection or view
+> db.<collection_name>.count(query, options)
+    The options can be 
+    - limit : the maximum number of documents to count
+    - skip : the number of documents to skip before counting
+    - hint : an index name hint
+    - maxTimeMS : 

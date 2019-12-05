@@ -1,0 +1,23 @@
+package pes;
+
+import java.awt.List;
+import java.util.ArrayList;
+
+public class Collections {
+
+	public static void main(String[] args) {
+		List<String> a = new ArrayList<>();
+		
+		int	n = a.size();
+		System.out.println("Array size : "+n);
+		
+		a.add("a");
+		a.add("b");
+		a.add("b");
+		a.add(null);
+		
+		n = a.size();
+		System.out.println("Array size : "+n);
+	}
+
+}

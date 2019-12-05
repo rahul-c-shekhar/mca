@@ -1,0 +1,360 @@
+SQL> create table movie(code varchar2(10) NOT NULL,
+  2  title varchar2(20) primary key,
+  3  rating varchar2(5));
+
+Table created.
+
+SQL> desc movie;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CODE                                      NOT NULL VARCHAR2(10)
+ TITLE                                     NOT NULL VARCHAR2(20)
+ RATING                                             VARCHAR2(5)
+
+SQL> create table movie_theatres(code varchar2(10) NOT NULL,
+  2  name varchar2(20) NOT NULL,
+  3  movie references movie(title) on delete cascade);
+
+Table created.
+
+SQL> desc movie_theatres;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CODE                                      NOT NULL VARCHAR2(10)
+ NAME                                      NOT NULL VARCHAR2(20)
+ MOVIE                                              VARCHAR2(20)
+
+SQL> insert into movie values('&code','&title','&rating');
+Enter value for code: M_01
+Enter value for title: Padmavat
+Enter value for rating: 4/5
+old   1: insert into movie values('&code','&title','&rating')
+new   1: insert into movie values('M_01','Padmavat','4/5')
+
+1 row created.
+
+SQL> insert into movie values('&code','&title','&rating');
+Enter value for code: M_02
+Enter value for title: Mission Impossible
+Enter value for rating: 3.5/5
+old   1: insert into movie values('&code','&title','&rating')
+new   1: insert into movie values('M_02','Mission Impossible','3.5/5')
+
+1 row created.
+
+SQL> insert into movie values('&code','&title','&rating');
+Enter value for code: M_03
+Enter value for title: Tagaru
+Enter value for rating: 4/5
+old   1: insert into movie values('&code','&title','&rating')
+new   1: insert into movie values('M_03','Tagaru','4/5')
+
+1 row created.
+
+SQL> insert into movie values('&code','&title','&rating');
+Enter value for code: M_04
+Enter value for title: Baahubali
+Enter value for rating: 2/5
+old   1: insert into movie values('&code','&title','&rating')
+new   1: insert into movie values('M_04','Baahubali','2/5')
+
+1 row created.
+
+SQL> insert into movie values('&code','&title','&rating');
+Enter value for code: M_05
+Enter value for title: Avengers
+Enter value for rating: 5/5
+old   1: insert into movie values('&code','&title','&rating')
+new   1: insert into movie values('M_05','Avengers','5/5')
+
+1 row created.
+
+SQL> insert into movie values('&code','&title','&rating');
+Enter value for code: M_06
+Enter value for title: Spiderman Homecoming
+Enter value for rating: unrated
+old   1: insert into movie values('&code','&title','&rating')
+new   1: insert into movie values('M_06','Spiderman Homecoming','unrated')
+insert into movie values('M_06','Spiderman Homecoming','unrated')
+                                                       *
+ERROR at line 1:
+ORA-12899: value too large for column "RAHUL_C_SHEKHAR"."MOVIE"."RATING"
+(actual: 7, maximum: 5) 
+
+
+SQL> alter table movie modify rating varchar2(10);
+
+Table altered.
+
+SQL> insert into movie values('&code','&title','&rating');
+Enter value for code: M_06
+Enter value for title: Spiderman Homecoming
+Enter value for rating: unrated
+old   1: insert into movie values('&code','&title','&rating')
+new   1: insert into movie values('M_06','Spiderman Homecoming','unrated')
+
+1 row created.
+
+SQL> insert into movie values('&code','&title','&rating');
+Enter value for code: M_07
+Enter value for title: Avengers Infinity War
+Enter value for rating: unrated
+old   1: insert into movie values('&code','&title','&rating')
+new   1: insert into movie values('M_07','Avengers Infinity War','unrated')
+insert into movie values('M_07','Avengers Infinity War','unrated')
+                                *
+ERROR at line 1:
+ORA-12899: value too large for column "RAHUL_C_SHEKHAR"."MOVIE"."TITLE"
+(actual: 21, maximum: 20) 
+
+
+SQL> alter table movie modify title varchar2(40);
+
+Table altered.
+
+SQL> insert into movie values('&code','&title','&rating');
+Enter value for code: M_07
+Enter value for title: Avengers Infinity War
+Enter value for rating: unrated
+old   1: insert into movie values('&code','&title','&rating')
+new   1: insert into movie values('M_07','Avengers Infinity War','unrated')
+
+1 row created.
+
+SQL> insert into movie values('&code','&title','&rating');
+Enter value for code: M_08
+Enter value for title: Gold
+Enter value for rating: 4.5/5
+old   1: insert into movie values('&code','&title','&rating')
+new   1: insert into movie values('M_08','Gold','4.5/5')
+
+1 row created.
+
+SQL> insert into movie values('&code','&title','&rating');
+Enter value for code: M_09
+Enter value for title: The Nun
+Enter value for rating: 3/5
+old   1: insert into movie values('&code','&title','&rating')
+new   1: insert into movie values('M_09','The Nun','3/5')
+
+1 row created.
+
+SQL> insert into movie values('&code','&title','&rating');
+Enter value for code: M_10
+Enter value for title: Sthree
+Enter value for rating: 4/5
+old   1: insert into movie values('&code','&title','&rating')
+new   1: insert into movie values('M_10','Sthree','4/5')
+
+1 row created.
+
+SQL> select * from movie;
+
+CODE       TITLE                                    RATING                      
+---------- ---------------------------------------- ----------                  
+M_01       Padmavat                                 4/5                         
+M_02       Mission Impossible                       3.5/5                       
+M_03       Tagaru                                   4/5                         
+M_04       Baahubali                                2/5                         
+M_05       Avengers                                 5/5                         
+M_06       Spiderman Homecoming                     unrated                     
+M_07       Avengers Infinity War                    unrated                     
+M_08       Gold                                     4.5/5                       
+M_09       The Nun                                  3/5                         
+M_10       Sthree                                   4/5                         
+
+10 rows selected.
+
+SQL> insert into movie_theatres values('&code','&name','&movie');
+Enter value for code: TH_01
+Enter value for name: Rex Theatre
+Enter value for movie: Mission Impossible
+old   1: insert into movie_theatres values('&code','&name','&movie')
+new   1: insert into movie_theatres values('TH_01','Rex Theatre','Mission Impossible')
+
+1 row created.
+
+SQL> insert into movie_theatres values('&code','&name','&movie');
+Enter value for code: TH_01
+Enter value for name: Rex Theatre
+Enter value for movie: The Nun
+old   1: insert into movie_theatres values('&code','&name','&movie')
+new   1: insert into movie_theatres values('TH_01','Rex Theatre','The Nun')
+
+1 row created.
+
+SQL> insert into movie_theatres values('&code','&name','&movie');
+Enter value for code: TH_01
+Enter value for name: Rex Theatre
+Enter value for movie: Sthree
+old   1: insert into movie_theatres values('&code','&name','&movie')
+new   1: insert into movie_theatres values('TH_01','Rex Theatre','Sthree')
+
+1 row created.
+
+SQL> insert into movie_theatres values('&code','&name','&movie');
+Enter value for code: TH_02
+Enter value for name: INOX
+Enter value for movie: Baahubali
+old   1: insert into movie_theatres values('&code','&name','&movie')
+new   1: insert into movie_theatres values('TH_02','INOX','Baahubali')
+
+1 row created.
+
+SQL> insert into movie_theatres values('&code','&name','&movie');
+Enter value for code: TH_02
+Enter value for name: INOX
+Enter value for movie: Tagaru
+old   1: insert into movie_theatres values('&code','&name','&movie')
+new   1: insert into movie_theatres values('TH_02','INOX','Tagaru')
+
+1 row created.
+
+SQL> insert into movie_theatres values('&code','&name','&movie');
+Enter value for code: TH_02
+Enter value for name: INOX
+Enter value for movie: Avengers
+old   1: insert into movie_theatres values('&code','&name','&movie')
+new   1: insert into movie_theatres values('TH_02','INOX','Avengers')
+
+1 row created.
+
+SQL> insert into movie_theatres values('&code','&name','&movie');
+Enter value for code: TH_03
+Enter value for name: PVR
+Enter value for movie: Gold
+old   1: insert into movie_theatres values('&code','&name','&movie')
+new   1: insert into movie_theatres values('TH_03','PVR','Gold')
+
+1 row created.
+
+SQL> insert into movie_theatres values('&code','&name','&movie');
+Enter value for code: TH_03
+Enter value for name: PVR
+Enter value for movie: Padmavat
+old   1: insert into movie_theatres values('&code','&name','&movie')
+new   1: insert into movie_theatres values('TH_03','PVR','Padmavat')
+
+1 row created.
+
+SQL> insert into movie_theatres values('&code','&name','&movie');
+Enter value for code: TH_03
+Enter value for name: PVR
+Enter value for movie: Sthree
+old   1: insert into movie_theatres values('&code','&name','&movie')
+new   1: insert into movie_theatres values('TH_03','PVR','Sthree')
+
+1 row created.
+
+SQL> insert into movie_theatres values('&code','&name','&movie');
+Enter value for code: TH_04
+Enter value for name: Cinepolis
+Enter value for movie: Baahubali
+old   1: insert into movie_theatres values('&code','&name','&movie')
+new   1: insert into movie_theatres values('TH_04','Cinepolis','Baahubali')
+
+1 row created.
+
+SQL> insert into movie_theatres values('&code','&name','&movie');
+Enter value for code: TH_04
+Enter value for name: Cinepolis
+Enter value for movie: The Nun
+old   1: insert into movie_theatres values('&code','&name','&movie')
+new   1: insert into movie_theatres values('TH_04','Cinepolis','The Nun')
+
+1 row created.
+
+SQL> insert into movie_theatres values('&code','&name','&movie');
+Enter value for code: TH_04
+Enter value for name: Cinepolis
+Enter value for movie: Avengers
+old   1: insert into movie_theatres values('&code','&name','&movie')
+new   1: insert into movie_theatres values('TH_04','Cinepolis','Avengers')
+
+1 row created.
+
+SQL> insert into movie_theatres values('&code','&name','&movie');
+Enter value for code: TH_05
+Enter value for name: ETA
+Enter value for movie: 
+old   1: insert into movie_theatres values('&code','&name','&movie')
+new   1: insert into movie_theatres values('TH_05','ETA','')
+
+1 row created.
+
+SQL> select * from movie_theatres;
+
+CODE       NAME                 MOVIE                                           
+---------- -------------------- --------------------                            
+TH_01      Rex Theatre          Mission Impossible                              
+TH_01      Rex Theatre          The Nun                                         
+TH_01      Rex Theatre          Sthree                                          
+TH_02      INOX                 Baahubali                                       
+TH_02      INOX                 Tagaru                                          
+TH_02      INOX                 Avengers                                        
+TH_03      PVR                  Gold                                            
+TH_03      PVR                  Padmavat                                        
+TH_03      PVR                  Sthree                                          
+TH_04      Cinepolis            Baahubali                                       
+TH_04      Cinepolis            The Nun                                         
+
+CODE       NAME                 MOVIE                                           
+---------- -------------------- --------------------                            
+TH_04      Cinepolis            Avengers                                        
+TH_05      ETA                                                                  
+
+13 rows selected.
+
+SQL> select title from movie;
+
+TITLE                                                                           
+----------------------------------------                                        
+Padmavat                                                                        
+Mission Impossible                                                              
+Tagaru                                                                          
+Baahubali                                                                       
+Avengers                                                                        
+Spiderman Homecoming                                                            
+Avengers Infinity War                                                           
+Gold                                                                            
+The Nun                                                                         
+Sthree                                                                          
+
+10 rows selected.
+
+SQL> select title from movie where rating='unrated';
+
+TITLE                                                                           
+----------------------------------------                                        
+Spiderman Homecoming                                                            
+Avengers Infinity War                                                           
+
+SQL> select * from movie_theatres where trim(movie) is null;
+
+CODE       NAME                 MOVIE                                           
+---------- -------------------- --------------------                            
+TH_05      ETA                                                                  
+
+SQL> select mt.code theatre_code, mt.name, mt.movie, m.code movie_code, m.rating from movie_theatres mt, movie m where mt.movie=m.title;
+
+THEATRE_CO NAME                 MOVIE                MOVIE_CODE RATING          
+---------- -------------------- -------------------- ---------- ----------      
+TH_01      Rex Theatre          Mission Impossible   M_02       3.5/5           
+TH_01      Rex Theatre          The Nun              M_09       3/5             
+TH_01      Rex Theatre          Sthree               M_10       4/5             
+TH_02      INOX                 Baahubali            M_04       2/5             
+TH_02      INOX                 Tagaru               M_03       4/5             
+TH_02      INOX                 Avengers             M_05       5/5             
+TH_03      PVR                  Gold                 M_08       4.5/5           
+TH_03      PVR                  Padmavat             M_01       4/5             
+TH_03      PVR                  Sthree               M_10       4/5             
+TH_04      Cinepolis            Baahubali            M_04       2/5             
+TH_04      Cinepolis            The Nun              M_09       3/5             
+
+THEATRE_CO NAME                 MOVIE                MOVIE_CODE RATING          
+---------- -------------------- -------------------- ---------- ----------      
+TH_04      Cinepolis            Avengers             M_05       5/5             
+
+12 rows selected.
+
+SQL> spool off

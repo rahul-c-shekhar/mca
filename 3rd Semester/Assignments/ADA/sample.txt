@@ -1,0 +1,1 @@
+This a sample text file to showcase file handling operations in C Programming language.

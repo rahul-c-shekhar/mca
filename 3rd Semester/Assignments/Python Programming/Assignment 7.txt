@@ -1,0 +1,350 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Oct  1 08:30:53 2018
+
+@author: rahul-c-shekhar
+"""
+
+"""
+1) Create a class to read and add two distance. Use two member functions get_distance and
+show_distance that reads and displays the distance in kms and mts. Use a class variable that
+counts the different values stored. Use add_distance to add the distances.
+"""
+
+class distance:
+    def __init__(self):
+        self.count = 0
+        
+    def getDistance(self):
+        self.distance1 = int(input("Enter the first distance (kms) : "))
+        self.distance2 = int(input("Enter the second distance (kms) : "))
+        self.count += 2
+        
+    def showDistance(self):
+        print("Distance 1 : ",self.distance1,"kms(",self.distance1*1000,"mts )")
+        print("Distance 2 : ",self.distance2,"kms(",self.distance2*1000,"mts )")
+        print("Total distances entered = ",self.count)
+        
+    def addDistance(self):
+        result = self.distance1 + self.distance2
+        print("Sum of given distances : ",result,"kms (",result*1000,"mts )")
+        
+c = distance()
+c.getDistance()
+c.showDistance()
+c.addDistance()
+
+
+"""
+2) Read time in seconds and convert seconds in HH:MM:SS format using class.
+"""
+
+class Time:
+    def getTime(self):
+        self.time = int(input("Enter the total number of seconds : "))
+        
+    def showTime(self):
+        hour = self.time // 3600
+        self.time %= 3600
+        minutes = self.time // 60
+        self.time %= 60
+        seconds = self.time
+        
+        print("Time is : ",hour,":",minutes,":",seconds)
+        
+t = Time()
+t.getTime()
+t.showTime()
+
+
+"""
+3) Use inheritance and display the results of students. Class student consists of name, srn,
+gender. Class Stud_res inherits student and consists of ISA, ESA, SGPA and CGPA. Use
+corresponding member functions.
+"""
+
+class Student:
+    def getStudent(self):
+        self.name = input("Enter the student's name : ")
+        self.srn = input("Enter the student's srn : ")
+        self.gender = input("Enter the student's gender : ")
+        
+    def showStudent(self):
+        print("\nStudent Details :")
+        print("Name : ",self.name)
+        print("SRN : ",self.srn)
+        print("Gender : ",self.gender)
+        
+class Stud_res(Student):
+    def getMarks(self):
+        self.marks1 = int(input("Enter ADA marks : "))
+        self.marks2 = int(input("Enter CN marks : "))
+        self.marks3 = int(input("Enter DBMS marks : "))
+        self.marks4 = int(input("Enter Python marks : "))
+        self.marks5 = int(input("Enter IDS marks : "))
+        
+    def getResults(self):
+        print("\nISA : ")
+        print("Enter the marks scored out of 40 :")
+        self.getMarks()
+        self.total1 = self.marks1 + self.marks2 + self.marks3 + self.marks4 + self.marks5
+        self.score1 = self.total1 / 200
+        
+        print("\nAssignments : ")
+        print("Enter the marks scored out of 20 :")
+        self.getMarks()
+        self.total2 = self.marks1 + self.marks2 + self.marks3 + self.marks4 + self.marks5
+        self.score2 = self.total2 / 100
+        
+        print("\nESA : ")
+        print("Enter the marks scored out of 100")
+        self.getMarks()
+        self.total3 = self.marks1 + self.marks2 + self.marks3 + self.marks4 + self.marks5
+        self.score3 = self.total3 / 500
+        
+        self.sgpa = round((self.score1 * 4) + (self.score2 * 2) + (self.score3 * 4))
+        
+    def showResults(self):
+        print("ISA marks : ",self.total1)
+        print("Assignments marks : ",self.total2)
+        print("ESA marks : ",self.total3)
+        print("SGPA : ",self.sgpa)
+        
+s = Stud_res()
+s.getStudent()
+s.showStudent()
+s.getResults()
+s.showResults()   
+
+
+"""
+4) Use multiple inheritance – Class Basic_info – name, id, age, gender; Class Dept_info –
+dept_name, assigned_work, time_comp; Class Employee inherits both Basic_info and
+Dept_info that displays the information of every employee.
+"""
+
+class basicInfo:
+    def getInfo(self):
+        self.name = input("Enter the name of the employee : ")
+        self.id = input("Enter the employee ID : ")
+        self.age = input("Enter the age of the employee : ")
+        self.gender = input("Enter the gender of the employee : ")
+    
+class deptInfo:
+    def getDept(self):
+        self.dname = input("Enter the name of the department : ")
+        self.work = input("Enter the assigned work : ")
+        self.time = input("Enter the time of completion : ")
+        
+class Employee(basicInfo,deptInfo):
+    def showInfo(self):
+        print("\nThe employee details are : ")
+        print("Name : ",self.name)
+        print("ID : ",self.id)
+        print("Age : ",self.age)
+        print("Gender : ",self.gender)
+        print("Department Name : ",self.dname)
+        print("Assigned work : ",self.work)
+        print("Completion time : ",self.time)
+        
+e = Employee()
+e.getInfo()
+e.getDept()
+e.showInfo()        
+
+
+"""
+5) Create a class Bank – id, type, balance. Use functions that display the information and either
+allow for deposit or withdraw and display the final balance after a transaction. Also count the
+number of transactions per customer.
+"""
+
+class Bank:
+    def getAccount(self):
+        self.id = input("Enter the ID : ")
+        self.type = input("Enter the type of account : ")
+        self.balance = float(input("Enter the balance : "))
+        
+    def showAccount(self):
+        print("\nAccount Details : ")
+        print("Account ID : ",self.id)
+        print("Account type : ",self.type)
+        print("Balance : ",self.balance)
+        
+    def Transaction(self):
+        count = 0
+        choice = input(print("\nPlease select the type of tansaction : \n1. Deposit \n2. Withdraw \n3. Exit \nEnter your choice : "))
+        if (choice == 1):
+            amount = float(input(print("\nEnter the amount you want to deposit : ")))
+            print("Amount deposited successfully")
+            print("Updated balance : ",self.balance + amount)
+            count += 1
+            self.Transaction()
+        elif (choice == 2):
+            debit = float(input(print("\nEnter the amount you want to withdraw : ")))
+            print("Amount withdrawn successfully")
+            print("Updated balance : ",self.balance - debit)
+            count += 1
+            self.Transaction()
+        else:
+            exit
+    
+b = Bank()
+b.getAccount()
+b.showAccount()
+b.Transaction()    
+
+
+"""
+6) Create a class Complex – img, real. Use operator overloading to
+a. Multiply two complex numbers.
+b. Divide two complex numbers.
+"""
+
+class Complex:
+    def __init__(self, real, img):
+        self.real = real
+        self.img = img
+        
+    def __mul__(self, other):
+        return Complex(self.real * other.real, self.img * other.img)
+
+    def __div__(self, other):
+        return Complex(self.real / other.real, self.img / other.img)
+
+x, y = 4, 5
+a = Complex(x, y)
+p, q = 7, 10
+b = Complex(p, q)
+mul = a * b
+div = a / b
+print("Multiplication : ",mul)
+print("Division : ",div)
+
+
+"""
+7) Create a class called point that has two instance variables x and y. Use operator overloading
+to find the
+a. Distance between two points.
+b. Compare P1 and P2 (greater or lesser).
+c. Check if they are present in the opposite quadrants.
+"""
+
+import math as m
+
+class Point:
+    def getPoints(self):
+        self.x = int(input("Enter the value of x : "))
+        self.y = int(input("Enter the value of y : "))
+        
+    def getDistance(self,x1,y1,x2,y2):
+        distance = m.sqrt(((x2 - x1)**2) + ((y2 - y1)**2))
+        print("Distance between the two points : ",distance)
+        
+    def __gt__(self,x,y):
+        if x.x > y.x and x.y > y.y:
+            return True
+        elif y.x > x.x and y.y > x.y:
+            return True
+        else:
+            return False
+        
+    def __lt__(self,x,y):
+        if x.x < y.x and x.y < y.y:
+            return True
+        elif y.x < x.x and y.y < x.y:
+            return True
+        else:
+            return False
+        
+    def checkQuadrant(self,x1,y1,x2,y2):
+        if x1 > 0 and y1 > 0 and x2 > 0 and y2 > 0:
+            print("They lie in the same quadrant")
+        elif x1 < 0 and y1 < 0 and x2 < 0 and y2 < 0:
+            print("They lie in the same quadrant")
+        else:
+            print("They lie in different quadrants")
+                
+p = Point()
+q = Point()
+p.getPoints()
+q.getPoints()
+r = Point()
+r.getDistance(p.x,p.y,q.x,q.y)
+print(r.__gt__(p,q))
+print(r.__lt__(p,q))
+r.checkQuadrant(p.x,p.y,q.x,q.y)
+
+
+
+"""
+8) Create a base class called shape that has the methods get_color and set_color which gets and
+sets the border color. The constructor sets the default color to black. Create a derived class
+Rectangle that inherits the base class and has the methods get_length, get_breadth,
+set_length, set_breadth that gets and sets the length and the breadth, get_area,
+get_parameter that calculates the area and perimeter of a rectangle. Create a derived class
+Circle that inherits the base class and has the methods get_radius, set_radius, that gets and
+sets the radio, get_area, get_parameter that calculates the area and perimeter of a circle.
+"""
+
+import math as m
+
+class Shape:
+    def setColour(self):
+        self.colour = input("Enter the border colour : ")
+        
+    def getColour(self):
+        print("The border colour is : ",self.colour)
+        
+class Rectangle(Shape):
+    def setLength(self):
+        self.length = int(input("Enter the length of the rectangle : "))
+        
+    def setBreadth(self):
+        self.breadth = int(input("Enter the breadth of the rectangle : "))
+        
+    def getLength(self):
+        print("Length : ",self.length)
+        
+    def getBreadth(self):
+        print("Breadth : ",self.breadth)
+        
+    def getPerimeter(self):
+        perimeter = 2 * (self.length + self.breadth)
+        print("Perimeter : ",perimeter)
+        
+    def getArea(self):
+        area = self.length * self.breadth
+        print("Area : ",area)
+        
+class Circle(Shape):
+    def setRadius(self):
+        self.radius = int(input("Enter the radius of the circle : "))
+        
+    def getRadius(self):
+        print("Radius : ",radius)
+        
+    def getPerimeter(self):
+        perimeter = 2 * m.pi * self.radius
+        print("Perimeter : ",perimeter)
+        
+    def getArea(self):
+        area = 2 * m.pi * self.radius * self.radius
+        print("Area = ",area)
+        
+r = Rectangle()
+r.setColour()
+r.getColour()
+r.setLength()
+r.setBreadth()
+r.getLength()
+r.getBreadth()
+r.getPerimeter()
+r.getArea()
+c = Circle()
+c.setColour()
+c.getColour()
+c.setRadius()
+c.getPerimeter()
+c.getArea()

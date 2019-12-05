@@ -1,0 +1,61 @@
+--> Multiplies numbers together and returns the result 
+> {$multiply:[<expression1>, <expression2>, ...]}
+> db.Sales.aggregate([
+    {
+        $project: {_id:1, item:1, total:{$multiply: ["$price", "$qty"]}}
+    }
+])
+
+> db.Sales.aggregate([
+    {$group :
+            {_id : "$item" ,
+             total:{$sum:{$multiply: ["$price", "$qty"]}}
+            }
+    }
+])
+
+--> Divides one number by another and return the result
+> db.WorkForce.insert([
+    {
+        _id : 1,
+        name : "Rahul",
+        hours : 40,
+        resource : "DARSHAN"
+    },
+    {
+        _id : 2,
+        name : "Vaidehi",
+        hours : 80,
+        resource : "BABY"
+    },
+    {
+        _id : 3,
+        name : "Akshita",
+        hours : 64,
+        resource : "WEB"
+    },
+    {
+        _id : 4,
+        name : "Atul",
+        hours : 48,
+        resource : "AQUANOS"
+    },
+    {
+        _id : 5,
+        name : "Rexibond",
+        hours : 40,
+        resource : "AQUANOS"
+    }
+])
+
+> db.WorkForce.aggregate([
+    {
+        $project: {_id:1, name:1, days:{$divide:["$hours",8]}}
+    }
+])
+
+--> Creates a new collection in the current database if the specified one does not already exist based on an aggregation
+> db.Sales.aggregate([
+    {$group : {_id : "$item", totalAmt:{$sum:{$multiply:["$price", "$qty"]}}}},
+    {$out:"ItemBySales"}
+])

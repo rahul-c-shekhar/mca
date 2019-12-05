@@ -1,0 +1,134 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Nov 25 11:59:32 2018
+
+@author: rahul-c-shekhar
+"""
+
+import numpy as np
+from tkinter import *
+
+"""
+1) Get the characteristics of a numpy array.
+"""
+arr = np.ndarray(shape=(2,2),dtype=int)
+print("arr ndim: ",arr.ndim)
+print("arr shape: ",arr.shape)
+print("arr size: ",arr.size)
+
+
+"""
+2) Create an array from a regular Python list or tuple.
+"""
+num=[1,2,3,4,5,6]
+arr = np.asarray(num)
+print(num)
+
+
+"""
+3) Create arrays with initial placeholder content.
+"""
+
+
+
+"""
+4) Create sequences of numbers. 
+"""
+arr = np.arange(10)
+print(arr)
+
+
+"""
+5) Returns evenly spaced values in an array within a given interval.
+"""
+arr = np.arange(0,20,2)
+print(arr)
+
+
+"""
+6) Extract all odd numbers from arr
+arr = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+"""
+arr = np.array([0,1,2,3,4,5,6,7,8,9])
+ans = (arr[arr%2==1])
+print(ans)
+
+
+"""
+7) Replace all odd numbers in arr with -1.
+"""
+arr = np.array([0,1,2,3,4,5,6,7,8,9])
+arr[arr%2==1] = -1
+print(arr)
+
+
+"""
+8) Replace all odd numbers in arr with -1 without changing arr.
+"""
+arr = np.array([0,1,2,3,4,5,6,7,8,9])
+arr[arr%2==1] = -1
+print(arr)
+
+
+"""
+Tkinter - 1
+"""
+root = Tk()
+root.title('Welcome to MCA App')
+lb = Label(root, text = 'Hello', )
+lb.pack(side = LEFT)
+b = Button(root, text = 'Click Me')
+b.pack(side = LEFT)
+mainloop()
+
+
+"""
+Tkinter - 2
+"""
+def show():
+    lb.config(text = 'Button was clicked!!')
+
+root = Tk()
+root.title('Welcome to MCA App')
+lb = Label(root, text = 'Hello', )
+lb.pack(side = LEFT)
+b = Button(root, text = 'Click Me', command = show)
+b.pack(side = LEFT)
+mainloop()
+
+
+"""
+Tkinter - 3
+"""
+root = Tk()
+root.title('This..')
+b = Button(root, text = 'File')
+b.pack(side = LEFT)
+mainloop()
+
+
+"""
+Tkinter - 4
+"""
+rt = Tk()
+rt.title('Registration Form')
+rt.geometry('300x300')
+rt.configure(background = 'light green')
+lb = Label(rt, text = 'Form', bg = 'light green').grid(row = 0, column = 3)
+lb1 = Label(rt, text = 'Name', bg = 'light green').grid(row = 1, column = 1)
+entry1 = Entry(rt, justify  = RIGHT).grid(row = 1, column = 6)
+lb2 = Label(rt, text = 'Course', bg = 'light green').grid(row = 2, column = 1)
+entry2 = Entry(rt, justify = RIGHT).grid(row = 2, column = 6)
+lb3 = Label(rt, text = 'Semester', bg = 'light green').grid(row = 3, column = 1)
+entry3 = Entry(rt, justify = RIGHT).grid(row = 3, column = 6)
+lb4 = Label(rt, text = 'Form No.', bg = 'light green').grid(row = 4, column = 1)
+entry4 = Entry(rt, justify = RIGHT).grid(row = 4, column = 6)
+lb5 = Label(rt, text = 'Contact No.', bg = 'light green').grid(row = 5, column = 1)
+entry5 = Entry(rt, justify = RIGHT).grid(row = 5, column = 6)
+lb6 = Label(rt, text = 'E-mail ID', bg = 'light green').grid(row = 6, column = 1)
+entry6 = Entry(rt, justify = RIGHT).grid(row = 6, column = 6)
+lb7 = Label(rt, text = 'Address', bg = 'light green').grid(row = 7, column = 1)
+entry7 = Entry(rt, justify = RIGHT).grid(row = 7, column = 6)
+b = Button(rt, text = 'Submit', bg = 'red', fg = 'black').grid(row = 8, column = 5)
+mainloop()

@@ -1,0 +1,29 @@
+set history filename app.txt
+set history save
+set history save on
+b func3
+b func2
+b func1
+b main
+r
+b info
+info b
+n
+n
+s
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+q

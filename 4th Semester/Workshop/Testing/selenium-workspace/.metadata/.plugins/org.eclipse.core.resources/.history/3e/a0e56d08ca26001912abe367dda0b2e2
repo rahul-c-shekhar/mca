@@ -1,0 +1,25 @@
+package pes;
+
+import java.util.HashSet;
+
+public class Sets {
+
+	public static void main(String[] args) {
+		Set<String> hs = new HashSet<String>();
+		
+		hs.add("a");
+		hs.add("b");
+		hs.add("b");
+		hs.add("c");
+		hs.add(null);
+		
+		int count = hs.size();
+		System.out.println("Set size : "+count);
+		
+		for(String s :hs)
+		{
+			System.out.println(s);
+		}
+	}
+
+}

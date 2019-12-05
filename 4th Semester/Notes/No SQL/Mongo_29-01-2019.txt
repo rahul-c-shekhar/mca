@@ -1,0 +1,42 @@
+show collections
+
+
+db.Students.insert([
+    {
+        _id:2,
+        name:"Tripati",
+        sem:4,
+        marks:[75,80,70,65]
+    },
+    {
+        _id:3,
+        name:"Vaidehi",
+        sem:4,
+        marks:[90,92,93,99]
+    }
+])
+
+
+update the marks of the first student and replace his exiting marks of 80/70 with 90 :
+
+> db.Students.update({_id:1, marks:70}, {$set : {"marks.$":90}})
+
+in the entire collection where ever th marks is 50 replace it with 60 :
+
+> db.Students.updateMany({marks:90}, {$set : {"marks.$":95}}) 
+
+increment marks in the array :
+
+> db.Students.update({_id:2, marks.$[]}, {$inc:{"marks.$[]":10}})
+
+> db.Students.update({}, {$inc:{"marks.$[]":10}},{multi:true})
+
+if the marks of any student is less than 50 set it as 55 :
+
+db.Students.update(
+    {},
+    {$set:{"marks.$[element]":100}},
+    {multi:true,
+    arrayFilters:[{"element":{$gt:100}}]}
+)
+

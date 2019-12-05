@@ -1,0 +1,571 @@
+Name : Rahul C Shekhar
+SRN : PES1201802486
+
+
+1) Create a collection called Employee containing the following fields – id, emp_code,
+emp_name. doj (date of join), salary
+
+> db.createCollection("Employee")
+
+-->  { "ok" : 1 }
+
+---------------------------------------------------------------------------------------------------------
+
+2) Insert 5 documents
+
+> db.Employee.insert([
+    {
+        _id:1,
+        emp_code:"E_01",
+        emp_name:"Rahul C Shekhar",
+        doj:"21/10/2012",
+        salary:90000
+    },
+    {
+        _id:2,
+        emp_code:"E_02",
+        emp_name:"Vachhani Vaidehi",
+        doj:"15/02/2014",
+        salary:30000
+    },
+    {
+        _id:3,
+        emp_code:"E_03",
+        emp_name:"Mythili Vinod",
+        doj:"15/08/2013",
+        salary:10000
+    },    
+    {
+        _id:4,
+        emp_code:"E_04",
+        emp_name:"Kalyan Kumar",
+        doj:"02/01/2012",
+        salary:30000
+    },
+    {
+        _id:5,
+        emp_code:"E_05",
+        emp_name:"Akshita Agarwal",
+        doj:"15/02/2015",
+        salary:90000
+    }    
+])
+
+--> BulkWriteResult({
+	"writeErrors" : [ ],
+	"writeConcernErrors" : [ ],
+	"nInserted" : 5,
+	"nUpserted" : 0,
+	"nMatched" : 0,
+	"nModified" : 0,
+	"nRemoved" : 0,
+	"upserted" : [ ]
+})
+
+---------------------------------------------------------------------------------------------------------
+
+3) Display the _id, emp_code and emp_name in the output document
+
+> db.Employee.find({},{_id:1,emp_code:1,emp_name:1})
+
+--> { "_id" : 1, "emp_code" : "E_01", "emp_name" : "Rahul C Shekhar" }
+    { "_id" : 2, "emp_code" : "E_02", "emp_name" : "Vachhani Vaidehi" }
+    { "_id" : 3, "emp_code" : "E_03", "emp_name" : "Mythili Vinod" }
+    { "_id" : 4, "emp_code" : "E_04", "emp_name" : "Kalyan Kumar" }
+    { "_id" : 5, "emp_code" : "E_05", "emp_name" : "Akshita Agarwal" }
+
+---------------------------------------------------------------------------------------------------------
+
+4) Insert embedded document called deduction that consists of pf, pt it to another 5 documents.
+
+> db.Employee.insert([
+    {
+        _id:6,
+        emp_code:"E_06",
+        emp_name:"Akash Surana",
+        doj:"21/10/2012",
+        salary:90000,
+        deduction:
+        {
+            pf:4200,
+            pt:300,
+            it:2500
+        }
+    },
+    {
+        _id:7,
+        emp_code:"E_07",
+        emp_name:"Sahana T J",
+        doj:"15/02/2014",
+        salary:30000,
+        deduction:
+        {
+            pf:3600,
+            pt:300,
+            it:2500
+        }
+    },
+    {
+        _id:8,
+        emp_code:"E_08",
+        emp_name:"Jeevan Jagadish",
+        doj:"15/08/2013",
+        salary:10000,
+        deduction:
+        {
+            pf:3960,
+            pt:300,
+            it:2500
+        }
+    },    
+    {
+        _id:9,
+        emp_code:"E_09",
+        emp_name:"Anuraag L",
+        doj:"02/01/2012",
+        salary:30000,
+        deduction:
+        {
+            pf:3600,
+            pt:300,
+            it:2500
+        }
+    },
+    {
+        _id:10,
+        emp_code:"E_10",
+        emp_name:"Goutham Srinivas",
+        doj:"15/02/2015",
+        salary:90000,
+        deduction:
+        {
+            pf:4200,
+            pt:300,
+            it:2500
+        }
+    }    
+])
+
+--> BulkWriteResult({
+	"writeErrors" : [ ],
+	"writeConcernErrors" : [ ],
+	"nInserted" : 5,
+	"nUpserted" : 0,
+	"nMatched" : 0,
+	"nModified" : 0,
+	"nRemoved" : 0,
+	"upserted" : [ ]
+})
+
+---------------------------------------------------------------------------------------------------------
+
+5) Display the _id and deduction detail of pf in the output document
+
+> db.Employee.find({},{_id:1,"deduction.pf":1})
+
+--> { "_id" : 1 }
+    { "_id" : 2 }
+    { "_id" : 3 }
+    { "_id" : 4 }
+    { "_id" : 5 }
+    { "_id" : 6, "deduction" : { "pf" : 4200 } }
+    { "_id" : 7, "deduction" : { "pf" : 3600 } }
+    { "_id" : 8, "deduction" : { "pf" : 3960 } }
+    { "_id" : 9, "deduction" : { "pf" : 3600 } }
+    { "_id" : 10, "deduction" : { "pf" : 4200 } }
+
+---------------------------------------------------------------------------------------------------------
+
+6) Include the day, month and year taken from doj, emp_code, pf and salary
+
+> db.Employee.find({},{emp_code:1,doj:1,salary:1,"deduction.pf":1})
+
+--> { "_id" : 1, "emp_code" : "E_01", "doj" : "21/10/2012", "salary" : 90000 }
+{ "_id" : 2, "emp_code" : "E_02", "doj" : "15/02/2014", "salary" : 30000 }
+{ "_id" : 3, "emp_code" : "E_03", "doj" : "15/08/2013", "salary" : 10000 }
+{ "_id" : 4, "emp_code" : "E_04", "doj" : "02/01/2012", "salary" : 30000 }
+{ "_id" : 5, "emp_code" : "E_05", "doj" : "15/02/2015", "salary" : 90000 }
+{ "_id" : 6, "emp_code" : "E_06", "doj" : "21/10/2012", "salary" : 90000, "deduction" : { "pf" : 4200 } }
+{ "_id" : 7, "emp_code" : "E_07", "doj" : "15/02/2014", "salary" : 30000, "deduction" : { "pf" : 3600 } }
+{ "_id" : 8, "emp_code" : "E_08", "doj" : "15/08/2013", "salary" : 10000, "deduction" : { "pf" : 3960 } }
+{ "_id" : 9, "emp_code" : "E_09", "doj" : "02/01/2012", "salary" : 30000, "deduction" : { "pf" : 3600 } }
+{ "_id" : 10, "emp_code" : "E_10", "doj" : "15/02/2015", "salary" : 90000, "deduction" : { "pf" : 4200 } }
+
+---------------------------------------------------------------------------------------------------------
+
+7) Display the documents that have the salary equal to 90000
+
+> db.Employee.find({salary:{$eq:90000}}).pretty()
+
+--> {
+	"_id" : 1,
+	"emp_code" : "E_01",
+	"emp_name" : "Rahul C Shekhar",
+	"doj" : "21/10/2012",
+	"salary" : 90000
+}
+{
+	"_id" : 5,
+	"emp_code" : "E_05",
+	"emp_name" : "Akshita Agarwal",
+	"doj" : "15/02/2015",
+	"salary" : 90000
+}
+{
+	"_id" : 6,
+	"emp_code" : "E_06",
+	"emp_name" : "Akash Surana",
+	"doj" : "21/10/2012",
+	"salary" : 90000,
+	"deduction" : {
+		"pf" : 4200,
+		"pt" : 300,
+		"it" : 2500
+	}
+}
+{
+	"_id" : 10,
+	"emp_code" : "E_10",
+	"emp_name" : "Goutham Srinivas",
+	"doj" : "15/02/2015",
+	"salary" : 90000,
+	"deduction" : {
+		"pf" : 4200,
+		"pt" : 300,
+		"it" : 2500
+	}
+}
+
+---------------------------------------------------------------------------------------------------------
+
+8) Select the documents where the salary is greater than 9000 and less than or equal to 12000.
+
+> db.Employee.find({salary:{$gt:9000,$lte:12000}}).pretty()
+
+--> {
+	"_id" : 3,
+	"emp_code" : "E_03",
+	"emp_name" : "Mythili Vinod",
+	"doj" : "15/08/2013",
+	"salary" : 10000
+}
+{
+	"_id" : 8,
+	"emp_code" : "E_08",
+	"emp_name" : "Jeevan Jagadish",
+	"doj" : "15/08/2013",
+	"salary" : 10000,
+	"deduction" : {
+		"pf" : 3960,
+		"pt" : 300,
+		"it" : 2500
+	}
+}
+
+---------------------------------------------------------------------------------------------------------
+
+9) Add another collection called dependents consisting of emp_code, dep_id, no. of dependents,
+   age of dependents.
+
+> db.createCollection("Dependents")
+
+--> { "ok" : 1 }
+
+> db.Dependents.insert([
+    {
+        _id:1,
+        emp_code:"E_01",
+        dep_id:"D_05",
+        nod:2,
+        age:
+        {
+            d1:25,
+            d2:30
+        }
+    },
+    {
+        _id:2,
+        emp_code:"E_02",
+        dep_id:"D_04",
+        nod:1,
+        age:
+        {
+            d1:68
+        }
+    },
+    {
+        _id:3,
+        emp_code:"E_03",
+        dep_id:"D_02",
+        nod:1,
+        age:
+        {
+            d1:18
+        }
+    },
+    {
+        _id:4,
+        emp_code:"E_04",
+        dep_id:"D_03",
+        nod:2,
+        age:
+        {
+            d1:65,
+            d2:70
+        }
+    },
+    {
+        _id:5,
+        emp_code:"E_05",
+        dep_id:"D_01",
+        nod:2,
+        age:
+        {
+            d1:25,
+            d2:65
+        }
+    },
+    {
+        _id:6,
+        emp_code:"E_06",
+        dep_id:"D_10",
+        nod:1,
+        age:
+        {
+            d1:40
+        }
+    },
+    {
+        _id:7,
+        emp_code:"E_07",
+        dep_id:"D_09",
+        nod:1,
+        age:
+        {
+            d1:33
+        }
+    },
+    {
+        _id:8,
+        emp_code:"E_08",
+        dep_id:"D_08",
+        nod:1,
+        age:
+        {
+            d1:15
+        }
+    },
+    {
+        _id:9,
+        emp_code:"E_09",
+        dep_id:"D_07",
+        nod:1,
+        age:
+        {
+            d1:70
+        }
+    },
+    {
+        _id:10,
+        emp_code:"E_10",
+        dep_id:"D_06",
+        nod:1,
+        age:
+        {
+            d1:50
+        }
+    },
+])
+
+--> BulkWriteResult({
+	"writeErrors" : [ ],
+	"writeConcernErrors" : [ ],
+	"nInserted" : 10,
+	"nUpserted" : 0,
+	"nMatched" : 0,
+	"nModified" : 0,
+	"nRemoved" : 0,
+	"upserted" : [ ]
+}){
+	"_id" : 1,
+	"emp_code" : "E_02",
+	"insurance_id" : "I_01",
+	"insurance_date" : "25/09/2017",
+	"insurance_type" : "Property Insurance",
+	"amount" : 500000
+}
+{
+	"_id" : 2,
+	"emp_code" : "E_04",
+	"insurance_id" : "I_02",
+	"insurance_date" : "05/11/2018",
+	"insurance_type" : "Fire Insurance",
+	"amount" : 200000
+}
+{
+	"_id" : 3,
+	"emp_code" : "E_05",
+	"insurance_id" : "I_03",
+	"insurance_date" : "03/03/2018",
+	"insurance_type" : "Liability Insurance",
+	"amount" : 1000000
+}
+
+
+---------------------------------------------------------------------------------------------------------
+
+10) If the age of dependents is more than 60 years create a new collection called insurance
+    consisting of insurance_id, emp_code, insurance_date, insurance_type and amount of premium.
+
+> db.createCollection("Insurance")
+
+--> { "ok" : 1 }
+
+> db.Insurance.insert([
+    {
+        _id:1,
+        emp_code:"E_02",
+        insurance_id:"I_01",
+        insurance_date:"25/09/2017",
+        insurance_type:"Property Insurance",
+        amount:500000
+    },
+    {
+        _id:2,
+        emp_code:"E_04",
+        insurance_id:"I_02",
+        insurance_date:"05/11/2018",
+        insurance_type:"Fire Insurance",
+        amount:200000
+    },
+    {
+        _id:3,
+        emp_code:"E_05",
+        insurance_id:"I_03",
+        insurance_date:"03/03/2018",
+        insurance_type:"Liability Insurance",
+        amount:1000000
+    },
+])
+
+--> BulkWriteResult({
+	"writeErrors" : [ ],
+	"writeConcernErrors" : [ ],
+	"nInserted" : 3,
+	"nUpserted" : 0,
+	"nMatched" : 0,
+	"nModified" : 0,
+	"nRemoved" : 0,
+	"upserted" : [ ]
+})
+
+> db.Insurance.find().pretty()
+
+--> {
+	"_id" : 1,
+	"emp_code" : "E_02",
+	"insurance_id" : "I_01",
+	"insurance_date" : "25/09/2017",
+	"insurance_type" : "Property Insurance",
+	"amount" : 500000
+}
+{
+	"_id" : 2,
+	"emp_code" : "E_04",
+	"insurance_id" : "I_02",
+	"insurance_date" : "05/11/2018",
+	"insurance_type" : "Fire Insurance",
+	"amount" : 200000
+}
+{
+	"_id" : 3,
+	"emp_code" : "E_05",
+	"insurance_id" : "I_03",
+	"insurance_date" : "03/03/2018",
+	"insurance_type" : "Liability Insurance",
+	"amount" : 1000000
+}
+
+---------------------------------------------------------------------------------------------------------
+
+11) If the age of dependents is less than 25, add another collection called education consisting of
+    emp_code, children_id, education_institute, fees.
+
+> db.createCollection("Education")
+
+--> { "ok" : 1 }
+
+> db.Education.insert([
+    {
+        _id:1,
+        emp_code:"E_01",
+        children_id:"C_01",
+        education_institute:"PES School",
+        fees:12000
+    },
+    {
+        _id:2,
+        emp_code:"E_03",
+        children_id:"C_02",
+        education_institute:"Florence High School",
+        fees:15000
+    },
+    {
+        _id:3,
+        emp_code:"E_05",
+        children_id:"C_03",
+        education_institute:"Carmel High School",
+        fees:18000
+    },
+    {
+        _id:4,
+        emp_code:"E_08",
+        children_id:"C_04",
+        education_institute:"National Academy For Learning",
+        fees:20000
+    }
+])
+
+--> BulkWriteResult({
+	"writeErrors" : [ ],
+	"writeConcernErrors" : [ ],
+	"nInserted" : 4,
+	"nUpserted" : 0,
+	"nMatched" : 0,
+	"nModified" : 0,
+	"nRemoved" : 0,
+	"upserted" : [ ]
+})
+
+> db.Education.find().pretty()
+
+--> {
+	"_id" : 1,
+	"emp_code" : "E_01",
+	"children_id" : "C_01",
+	"education_institute" : "PES School",
+    fees:12000
+}
+{
+	"_id" : 2,
+	"emp_code" : "E_03",
+	"children_id" : "C_02",
+	"education_institute" : "Florence High School",
+    fees:15000
+}
+{
+	"_id" : 3,
+	"emp_code" : "E_05",
+	"children_id" : "C_03",
+	"education_institute" : "Carmel High School",
+    fees:18000
+}
+{
+	"_id" : 4,
+	"emp_code" : "E_08",
+	"children_id" : "C_04",
+	"education_institute" : "National Academy For Learning",
+    fees:20000
+}
+
+---------------------------------------------------------------------------------------------------------

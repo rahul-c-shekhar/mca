@@ -1,0 +1,163 @@
+Date : 01/02/2019
+
+--> cssSelector():
+- If you cannot identify the elements by using id, name, className, tagName, linkText and partialLinkText then we can identify that elementby using a locator cssSelector()
+- The syntax for cssSelector() is tagName[attributeName='attributeValue'].  Eg. : input[type='password']
+
+--> In order to veify the cssSelector() expression, in Firefox browser :
+- Click on tryXPath icon
+- Select querySelectorAll option from the Way list box
+- Specify the cssSelector() expression in expressionfield and click on enter. 
+
+--> XPath :
+- XPath is the path of an element which is present on the web page
+- There are 2 types of XPath :
+    - Absolute XPath
+    - Relative XPath
+
+--> Absolute XPath :
+- It is the complete path of an element from the root of the web page (HTML)
+- It is represented by using "/" which means immediate child. Eg. : /html/body/div[1]/input[2]
+- Absolute XPath of elements in xPath.html :
+    - A : /html/body/div[1]/input[1]
+    - B : /html/body/div[1]/input[2]
+    - C : /html/body/div[2]/input[1]
+    - D : /html/body/div[2]/input[2]
+
+    - AB : /html/body/div[1]/input
+    - CD : /html/body/div[2]/input
+
+    - AC : /html/body/div/input[1]
+    - BD : /html/body/div/input[2]
+
+    - AD : /html/body/div[1]/input[1] | /html/body/div[2]/input[2]
+    - BC : /html/body/div[1]/input[2] | /html/body/div[2]/input[1]
+
+    - ABC : /html/body/div[1]/input | /html/body/div[2]/input[1]
+    - ABD : /html/body/div[1]/input | /html/body/div[2]/input[2]
+    - ACD : /html/body/div[1]/input[1] | /html/body/div[2]/input
+    - BCD : /html/body/div[1]/input[2] | /html/body/div[2]/input
+
+    - ABCD : /html/body/div[1]/input | /html/body/div[2]/input
+
+--> Relative XPath :
+- It represents the path of any element which is present on the web page
+- It is represented by using "//" which means any child
+- Syntax :
+    - //tagName = All the matching elements
+    - //tagName[1] = All the 1st matching elements
+    - //tagName[last()] = All the last matching elements
+    - //* = All the elements
+- Relative XPath of elements in xPath.html :
+    - A : //div[1]/input[1]
+    - B : //div[1]/input[2]
+    - C : //div[2]/input[1]
+    - D : //div[2]/input[1]
+
+    - AB : //div[1]/input
+    - CD : //div[2]/input
+
+    - AC : //div/input[1]
+    - BD : //div/input[2]
+
+    - AD : //div[1]/input[1] | //div[2]/input[2]
+    - BC : //div[1]/input[2] | //div[2]/input[1]
+
+    - ABC : //div[1]/input | //div[2]/input[1]
+    - ABD : //div[1]/input | //div[2]/input[2]
+    - ACD : //div/input[1] | //div[2]/input[2]
+    - BCD : //div[1]/input[2] | //div[2]/input
+
+    - ABCD : //div[1]/input | //div[2]/input
+
+--> XPath by Attributes :
+- In order to identify the required element, it may not work properly when we use the index values because whenever the position of the element changes its index value will also change
+- To overcome the above problem we use attributes in place of index values which is called as XPath by Attributes
+- The syntax is : tagName[@attributeName='attributeValue']
+- It is applicable for both Absolute XPath and Relative XPath
+    Eg. : i)    Absolute XPath : /html/body/div/input[@value='B']
+          ii)   Relative XPath : //input[@value='B']
+- We can pass multiple attributes by using "or" operator. Eg. : //input[@value='B' or @value='A']
+
+--> XPath by text() : 
+- If the specified element does not contain any attributes and if it contains the text then we can identify that element by using XPath by text()
+- The syntax is : tagName[text()='textValue']
+- It is applicable for both Absolute XPath and Relative XPath. Eg. : //td[text()='Java']
+- text() can be represented by using "."  Eg. : //td[.='Java']
+
+--> Note : 
+- Attribute values and text values are case sensitive and space sensitive
+- Out of 8 locators the prefered locators are :
+    - id
+    - name
+    - linkText
+    - XPath :
+        - Absolute XPath
+        - Relative XPath :
+            - XPath by attributes
+            - XPath by text()
+
+--> How do you get text of an element :
+- Anything which is present in-between opening tag and closing tag is called as text
+- We can get text of an element by using a method called getText()
+
+--> Collection :
+- A group of individual objects as a single entity is called as a collection 
+- Collection Framework :
+    - To store of group of individual objects we need classes and interfaces and those classes and interfaces are available in Collection Framework
+- In Collection we have an interface called collection which is inherited by other interfaces such as List, Queue ans Set
+    --> List :
+    - It is an interface which is implemented by the classes :
+        i)  ArrayList
+        ii) LinkedList
+        iii)Vector
+    - In List :
+        i)  Duplicates are allowed
+        ii) Null values are allowed
+        iii)It follows insertion order
+        iv) It is an index based collection
+- In List we can add the data using add()
+- We can get the size using size()
+- Get the data using get()
+- The return type of get() depends on the type of the data which are stored in the List.
+
+--> Handling multiple elements : 
+- We can handle multiple elements by using findElements()
+- The return type of findElements() is List of WebElement
+- In findElements() if the specified locator is matching with multiple elements then it returns the address of all the matching elements
+- In findElements() if the specified locator is not matching with any elements then it returns empty List (0)
+- For findElements() the prefered locators are :
+    - XPath
+    - tagName
+
+--> Sample Web page :
+- Write a script to count and print all the links present on the web page
+
+--> Synchronization :
+- Matching the speed of Selenium with the speed of application is called as synchronization
+- We can handle the synchronization by using :
+    - implicitlyWait()
+
+
+--> implicitlyWait() :
+- It is used to handle synchronization of findElement() and findElements() only
+- It takes 2 arguments of type long and TimeUnit :
+    - The first argument is the waiting period
+    - The second argument we have to specify the time limit
+    - The different TimeUnits are :
+        - DAYS
+        - HOURS
+        - MINUTES
+        - SECONDS
+        - MILLISECONDS
+        - MICROSECONDS
+        - NANOSECONDS
+        Eg. : driver.manage().timeouts().implicitWait(10, TimeUnit.SECONDS);
+
+--> Work flow of implicitlyWait() :
+- During the runtime when the control comes to findElement() or findElements(), it will check whether the specified element is present or not
+- If the specified element is present it will return the address of the matching elements otherwise it will check whether the implicitlyWait() is specified or not
+- If implicitlyWait() is not specified then it will throw no such element exception or empty list
+- If the implicitlyWait() is specified then it will check whether the specified time is over or not
+- If the specified time is over then it will throw no such element exception or empty list else for every 500ms it will check whether the element is present or not
+- 500ms is called as Polling period

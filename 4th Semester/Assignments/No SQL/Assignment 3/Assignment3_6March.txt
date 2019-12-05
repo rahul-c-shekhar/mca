@@ -1,0 +1,193 @@
+Name : Rahul C Shekhar
+SRN : PES1201802486
+
+
+1) Create a collection called pets that contains id, name, age and pets is an embedded document
+   that consists of petname, petage, pettype.
+
+> db.createCollection('Pets')
+
+--> { "ok" : 1 }
+
+---------------------------------------------------------------------------------------------------------
+
+2) Insert 10 documents.
+
+> db.Pets.insert([
+    {
+        _id : 1,
+        name : "Rahul",
+        age : 23,
+        pets : {
+            pet_name : "Rickon",
+            pet_age : 8,
+            pet_type : "Dog"
+        }
+    },
+    {
+        _id : 2,
+        name : "Atul",
+        age : 22,
+        pets : {
+            pet_name : "Richard",
+            pet_age : 10,
+            pet_type : "Dog"
+        }
+    },
+    {   
+        _id : 3,
+        name : "Vaidehi",
+        age : 22,
+        pets : {
+            pet_name : "Pinky",
+            pet_age : 3,
+            pet_type : "Cat"
+        }
+    },
+    {
+        _id : 4,
+        name : "Akshita",
+        age : 23,
+        pets : {
+            pet_name : "Carry",
+            pet_age : 5,
+            pet_type : "Cat"
+        }
+    },
+    {
+        _id : 5,
+        name : "Harshit",
+        age : 23,
+        pets : [
+            {
+                pet_name : "Dave",
+                pet_age : 2,
+                pet_type : "Dog"
+            },
+            {
+                pet_name : "Cathy",
+                pet_age : 8,
+                pet_type : "Cat"
+            }
+        ]
+    },
+    {
+        _id : 6,
+        name : "Chirag",
+        age : 23,
+        pets : {
+            pet_name : "Lady",
+            pet_age : 8,
+            pet_type : "Cat"
+        }
+    },
+    {
+        _id : 7,
+        name : "Sahana",
+        age : 23,
+        pets : {
+            pet_name : "Ghost",
+            pet_age : 8,
+            pet_type : "Dog"
+        }
+    },
+    {
+        _id : 8,
+        name : "Bhumika",
+        age : 23,
+        pets : {
+            pet_name : "Nymeria",
+            pet_age : 8,
+            pet_type : "Cat"
+        }
+    },
+    {
+        _id : 9,
+        name : "Kalyan",
+        age : 23,
+        pets : {
+            pet_name : "Sandy",
+            pet_age : 8,
+            pet_type : "Dog"
+        }
+    },
+    {
+        _id : 10,
+        name : "Prajwal",
+        age : 23,
+        pets : {
+            pet_name : "Queen",
+            pet_age : 8,
+            pet_type : "Cat"
+        }
+    }
+])
+
+--> BulkWriteResult({
+	"writeErrors" : [ ],
+	"writeConcernErrors" : [ ],
+	"nInserted" : 10,
+	"nUpserted" : 0,
+	"nMatched" : 0,
+	"nModified" : 0,
+	"nRemoved" : 0,
+	"upserted" : [ ]
+})
+
+---------------------------------------------------------------------------------------------------------
+
+3) Find out how many people have cats as pets.
+
+> db.Pets.count({"pets.pet_type" : { $eq : "Cat"}})
+
+--> 6
+
+---------------------------------------------------------------------------------------------------------
+
+4) Find out how many people have atleast two pets.
+
+> db.Pets.count({ $and : [ {"pets.pet_type" : { $eq : "Cat"}}, {"pets.pet_type" : { $eq : "Dog"}} ]})
+
+--> 1
+
+---------------------------------------------------------------------------------------------------------
+
+5) Display the names of first two people who have dogs as pets.
+
+> db.Pets.find({"pets.pet_type" : { $eq : "Dog"}}).limit(2).pretty()
+
+--> {
+	"_id" : 1,
+	"name" : "Rahul",
+	"age" : 23,
+	"pets" : {
+		"pet_name" : "Rickon",
+		"pet_age" : 8,
+		"pet_type" : "Dog"
+	}
+}
+{
+	"_id" : 2,
+	"name" : "Atul",
+	"age" : 22,
+	"pets" : {
+		"pet_name" : "Richard",
+		"pet_age" : 10,
+		"pet_type" : "Dog"
+	}
+}
+
+---------------------------------------------------------------------------------------------------------
+
+6) Create an output collection called dog_coll that consists of all documents that have only dogs
+   as pets.
+
+> db.Pets.find({"pets.pet_type" : { $eq : "Dog"}},{ $out : "Dog_Coll"})
+
+db.Pets.aggregate([
+    {$unwind : "$pets"},
+    {$group : {_id : pet :{ $pets.pet_type : {$eq : "Dog}}}},
+    {$out : "Dog_Coll"}
+])
+
+---------------------------------------------------------------------------------------------------------

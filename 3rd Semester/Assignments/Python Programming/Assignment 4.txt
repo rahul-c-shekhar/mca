@@ -1,0 +1,309 @@
+1) Find the maximum of three numbers.
+def max(x,y,z):
+    largest=0
+    if (int(x)>int(y)) and (int(x)>int(z)):
+        largest=x
+    elif (int(y)>int(x)) and (int(y)>int(z)):
+        largest=y
+    else:
+        largest=z;
+        
+    print("Largest of ",x,", ",y,", ",z," is : ",largest);
+    return None;
+
+a,b,c=input("Enter three numbers : ").split(",")
+max(a,b,c)
+
+
+2) Find the sum of the numbers in a list.
+def sum(mylist=[]):
+    total=0
+    for i in mylist:
+        total=total+int(i)
+        
+    print("The sum of all the elements in the list = ",total)
+    return None
+
+l=list(input("Enter a list of numbers to find its sum : ").split(","))
+sum(l)
+
+
+3) Reverse a string without using built-in function.
+def reverse(str):
+    rstr=""
+    for i in range(1,len(str)+1):
+        rstr=rstr+str[-i]
+        
+    print("Reverse of ",str," is : ",rstr)
+    return None
+
+reverse(input("Enter a string : "))
+
+
+4) Read a string and a character and display the frequency of its occurrence in the string.
+def occurance(str,x):
+    count=str.count(x)
+    print(x," occurs ",count," times")
+            
+    return None
+
+occurance(input("Enter a string : "),input("Enter the character to search : "))
+
+
+5) Check whether the input is a palindrome or not. 
+def reversestr(str):
+    rstr=""
+    for i in range(1,len(str)+1):
+        rstr=rstr+str[-i]
+        
+    if rstr==str:
+        print(str," is a palindrome.")
+    else:
+        print(str," is not a palindrome.")
+    return None
+
+def reversnum(num):
+    temp=num
+    rev=0
+    while(num>0):
+        rem=num%10
+        rev=rev*10+rem
+        num=num//10
+        
+    if temp==rev:
+        print(temp," is a palindrome.")
+    else:
+        print(temp," is not a palindrome.")
+    return None
+
+def palindrome(x):
+    if isinstance(x,int):
+        reversenum(x)
+    else:
+        reversestr(x)
+        
+    return None
+
+palindrome(input("Enter an input to check if it is palindrome or not : "))        
+
+
+6) Read a string and check if the string contains at least one occurrence of all the 26 alphabets.
+def pangram(str):
+    str=str.lower()
+    str=str.replace(" ","")
+    letters="abcdefghijklmnopqrstuvwxyz"
+    flag=True
+    for char in letters:
+        if char in str:
+            pass
+        else:
+            flag=False
+        
+    if flag:
+        print("The given string contains all 26 alphabets")
+    else:
+        print("The given string does not contain all 26 alphabets")
+        
+    return None
+
+pangram(input("Enter a string : "))
+
+
+7) Recursively calculate the gcd of two numbers. Handle the exceptions.
+import sys
+
+def gcd(m,n):
+    if n==0:
+        return m
+    else:
+        return gcd(n,m%n)
+    
+try:
+    a=int(input("Enter the value of m : "))
+    b=int(input("Enter the value of n : "))
+except:
+    print(sys.exc_info()[0]," occured")
+else:
+    print("GCD of ",a," and ",b," is : ",gcd(a,b))
+
+
+8) Recursively sum up ‘n’ natural numbers.
+def sum(n):
+    if n<=1:
+        return n
+    else:
+        return n+sum(n-1)
+    
+n=int(input("Enter the value of n : "))
+print("Sum of ",n," numbers = ",sum(n))
+
+
+9) Recursively convert a decimal number to binary number. Handle the exceptions.
+import sys
+
+def binary(n):
+    if n>1:
+        binary(n//2)
+    print(n%2,end="")
+    
+try:
+    n=int(input("Enter a decimal number : "))
+except:
+    print(sys.exc_info()[0]," occured")
+else:
+    binary(n)
+
+
+10) Create a simple calculator.
+def add(a,b):
+    return a+b
+ 
+def subtract(a,b):
+    return a-b
+ 
+def multiply(a,b):
+    return a*b
+ 
+def divide(a,b):
+    return a/b
+ 
+print("Operation to perform : \n" \
+        "1. Add\n" \
+        "2. Subtract\n" \
+        "3. Multiply\n" \
+        "4. Divide\n")
+ 
+num1=int(input("Enter the first operand: "))
+num2=int(input("Enter the second operand: "))
+ 
+choice=input("Enter your choice : ")
+
+if choice=='1':
+    print(num1," + ",num2, "=",add(num1,num2))
+ 
+elif choice=='2':
+    print(num1," - ",num2," = ",subtract(num1,num2))
+ 
+elif choice=='3':
+    print(num1," * ",num2," = ",multiply(num1,num2))
+ 
+elif choice=='4':
+    print(num1," / ",num2," = ",divide(num1,num2))
+else:
+    print("Please enter the a valid choice!!!")
+
+
+11) Find all possible divisors of a number. Count the total number and sum up all the divisors. (Use two functions)
+def divisors(n):
+    a=[]
+    for i in range(1,n+1):
+        if (n%i)==0:
+            a.append(i)
+    print("The divisors of ",n," are : ",a)
+    return a
+
+def sum(mylist=[]):
+    total=0
+    length=len(mylist)
+    for i in mylist:
+        total=total+i
+        
+    print("Number of divisors = ",length)
+    print("Sum of divisors = ",total)
+    return None
+        
+num=int(input("Enter a positive integer : "))
+sum(divisors(num))
+
+
+12) Read a list of strings and display the length of each string with the string.
+def strings(mylist=[]):
+    print("The elements of the list are : ")
+    for i in mylist:
+        print("-->",i)
+        print("Length of ",i," = ",len(i),"\n")
+        
+    return None
+
+str=list(input("Enter a list of strings : ").split(","))
+strings(str)
+
+
+13) Recursively print the Pascal’s triangle upto ‘n’ rows.
+def combination(n, k):
+    if k==0 or k==n:
+        return 1
+    return combination(n-1,k-1)+combination(n-1,k)
+
+def pascals_triangle(rows):
+    print("Pascal's tiangle : ")
+    for i in range( rows):
+        result=""
+        for j in range(i+1):
+            result=result+str(combination(i,j))+"\t"
+        print(result)
+
+pascals_triangle(int(input("Enter the number of rows : ")))
+
+
+14) Print all prime numbers in a given range.
+def prime(n):
+    print("The prime numbers are : ")
+    for i in range(2,n+1):
+        k=0
+        for j in range(2,i//2+1):
+            if i%j==0:
+                k=k+1
+        if k<=0:
+            print(i,end="  ")
+            
+prime(int(input("Enter the range : ")))
+
+
+15) Read two matrices and display the sum and difference of the same.
+def print_matrix(matrix):
+    for i in range(len(matrix)):
+        for j in range(len(matrix[0])):
+            print(matrix[i][j],end="\t")
+        print("\n")
+
+def sum_matrix(n,matrix1,matrix2):
+    sum_matrix=[]
+    for i in range(0,n):
+        a=[]
+        for j in range(0,n):
+            a.append(matrix1[i][j]+matrix2[i][j])
+        sum_matrix.append(a)
+    print("\n\nSum of the given two matrices : ")
+    print_matrix(sum_matrix)
+        
+def diff_matrix(n,matrix1,matrix2):
+    diff_matrix=[]
+    for i in range(0,n):
+        b=[]
+        for j in range(0,n):
+            b.append(matrix1[i][j]-matrix2[i][j])
+        diff_matrix.append(b)
+    print("\n\nDifference of the given two matrices : ")
+    print_matrix(diff_matrix)
+        
+        
+m=int(input("Enter the value of n for nxn matrix : "))
+n=m
+print("Enter the first matrix : ")
+matrix1=[]
+print("Enter the ",m," x ",n," matrix : ")
+for i in range(m):
+    matrix1.append(list(map(int, input().rstrip().split())))
+    
+print()
+print()
+
+print("Enter the second matrix : ")
+matrix2=[]
+print("Enter the ",m," x ",n," matrix : ")
+for i in range(m):
+    matrix2.append(list(map(int, input().rstrip().split())))
+
+sum_matrix(m,matrix1,matrix2)
+diff_matrix(m,matrix1,matrix2)

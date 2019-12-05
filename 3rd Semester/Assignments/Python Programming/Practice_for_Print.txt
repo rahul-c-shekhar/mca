@@ -1,0 +1,236 @@
+print(format(123, "d"))
+>>>123
+
+print(format(123.4567898, "f"))
+>>>123.456790
+
+print(format(12, "b"))
+>>>1100
+
+print(format(1234, "*>+7,d"))
+>>>*+1,234
+
+print(format(123.4567, "^-09.3f"))
+>>>0123.4570
+
+print("The number is:{:d}".format(123))
+>>>The number is:123
+
+print("The float number is:{:f}".format(123.4567898))
+>>>The float number is:123.456790
+
+print("bin: {0:b}, oct: {0:o}, hex: {0:x}".format(12))
+>>>bin: 1100, oct: 14, hex: c
+
+print("{:5d}".format(12))
+>>>   12
+
+print("{:2d}".format(1234))
+>>>1234
+
+print("{:8.3f}".format(12.2346))
+>>>  12.235
+
+print("{:05d}".format(12))
+>>>00012
+
+print("{:08.3f}".format(12.2346))
+>>>0012.235
+
+print("{:+f} {:+f}".format(12.23, -12.23))
+>>>+12.230000 -12.230000
+
+print("{:-f} {:-f}".format(12.23, -12.23))
+>>>12.230000 -12.230000
+
+print("{: f} {: f}".format(12.23, -12.23))
+>>> 12.230000 -12.230000
+
+print("{:5d}".format(12))
+#  17:    12
+
+print("{:^10.3f}".format(12.2346))
+>>>  12.235
+
+print("{:<05d}".format(12))
+>>> 12000
+
+print("{:=8.3f}".format(-12.2346))
+>>>- 12.235
+
+print("{:5}".format("cat"))
+>>>cat
+
+print("{:>5}".format("cat"))
+>>>  cat
+
+print("{:^5}".format("cat"))
+>>> cat
+
+print("{:*^5}".format("cat"))
+>>>*cat*
+
+print("{:.3}".format("caterpillar"))
+>>>cat
+
+print("{:5.3}".format("caterpillar"))
+>>>cat
+
+print("{:^5.3}".format("caterpillar"))
+>>> cat
+
+person = {'age': 23, 'name': 'Adam'}
+print("{p[name]}'s age is: {p[age]}".format(p=person))
+>>>Adam's age is: 23
+
+person = {'age': 23, 'name': 'Adam'}
+print("{name}'s age is: {age}".format(**person))
+>>>Adam's age is: 23
+
+string = "{:{fill}{align}{width}}"
+print(string.format('cat', fill='*', align='^', width=5))
+>>>*cat*
+
+num = "{:{align}{width}.{precision}f}"
+print(num.format(123.236, align='<', width=8, precision=2))
+>>>123.24
+
+print('%s %s' % ('one', 'two'))
+>>>one two
+
+print('{} {}'.format('one', 'two'))
+>>>one two
+
+print('%d %d' % (1, 2))
+>>>1 2
+
+print('{} {}'.format(1, 2))
+>>>1 2
+
+print('{1} {2} {0}'.format('one', 'two', 'three'))
+>>>two three one
+
+print('%10s' % ('test',))
+>>>      test
+
+print('{:>10}'.format('test'))
+>>>      test
+
+print('%-10s' % ('test',))
+>>>test
+
+print('{:10}'.format('test'))
+>>>test
+
+print('{:_<10}'.format('test'))
+#  41: test______
+
+print('{:^10}'.format('test'))
+>>>   test
+
+print('{:^6}'.format('zip'))
+>>> zip
+
+print('%.5s' % ('xylophone',))
+>>>xylop
+
+print('{:.5}'.format('xylophone'))
+>>>xylop
+
+print('%-10.5s' % ('xylophone',))
+>>>xylop
+
+print('{:10.5}'.format('xylophone'))
+>>>xylop
+
+print('%d' % (42,))
+#  48: 42
+
+print('{:d}'.format(42))
+>>>42
+
+print('%f' % (3.141592653589793,))
+>>>3.141593
+
+print('{:f}'.format(3.141592653589793))
+>>>3.141593
+
+print('%4d' % (42,))
+>>>  42
+
+print('{:4d}'.format(42))
+>>>  42
+
+print('%06.2f' % (3.141592653589793,))
+>>>003.14
+
+print('{:06.2f}'.format(3.141592653589793))
+>>>003.14
+
+print('%04d' % (42,))
+>>>0042
+
+print('{:04d}'.format(42))
+>>>0042
+
+print('%+d' % (42,))
+>>>+42
+
+print('{:+d}'.format(42))
+>>>+42
+
+print('% d' % ((- 23),))
+>>>-23
+
+print('{: d}'.format((- 23)))
+>>>-23
+
+print('% d' % (42,))
+>>> 42
+
+print('{: d}'.format(42))
+>>> 42
+
+print('{:=5d}'.format((- 23)))
+>>>-  23
+
+print('{:=+5d}'.format(23))
+>>>+  23
+
+data = {'first': 'Hodor', 'last': 'Hodor!'}
+print('%(first)s %(last)s' % data)
+>>>Hodor Hodor!
+
+print('{first} {last}'.format(**data))
+>>>Hodor Hodor!
+
+print('{first} {last}'.format(first='Hodor', last='Hodor!'))
+>>>Hodor Hodor!
+
+from datetime import datetime
+print('{:%Y-%m-%d %H:%M}'.format(datetime(2001, 2, 3, 4, 5)))
+>>>2001-02-03 04:05
+
+print('{:{align}{width}}'.format('test', align='^', width='10'))
+>>>   test
+
+print('%.*s = %.*f' % (3, 'Gibberish', 3, 2.7182))
+>>>Gib = 2.718
+
+print('{:.{prec}} = {:.{prec}f}'.format('Gibberish', 2.7182, prec=3))
+>>>Gib = 2.718
+
+print('%*.*f' % (5, 2, 2.7182))
+>>> 2.72
+
+print('{:{width}.{prec}f}'.format(2.7182, width=5, prec=2))
+>>> 2.72
+
+print('{:{prec}} = {:{prec}}'.format('Gibberish', 2.7182, prec='.3'))
+>>>Gib = 2.72
+
+print('{:{}{}{}.{}}'.format(2.7182818284, '>', '+', 10, 3))
+>>>     +2.72
+
+print('{:{}{sign}{}.{}}'.format(2.7182818284, '>', 10, 3, sign='+'))
+>>>     +2.72

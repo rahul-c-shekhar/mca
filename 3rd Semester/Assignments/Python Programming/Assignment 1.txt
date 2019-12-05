@@ -1,0 +1,187 @@
+1) Check if two strings are Anagrams of each other :
+>>> str1='listen'
+>>> str2='silent'
+>>> sorted(str1)==sorted(str2)
+True
+
+
+2) Simple Calculator :
+>>> a=2
+>>> b=5
+>>> a+b
+7
+>>> a-b
+-3
+>>> a*b
+10
+>>> a/b
+0.4
+>>> a%b
+2
+>>> a//b
+0
+>>> a**b
+32
+
+
+3) Read n and compute n+nn+nnn :
+>>> n='5'
+>>> int(n)+int(n+n)+int(n+n+n)
+615
+
+
+4) New String where the First Character and the Last Character of the old string have been Exchanged :
+>>> str=list(input())
+python
+>>> temp=str[0]
+>>> str[0]=str[-1]
+>>> str[-1]=temp
+>>> newstr=''".join(str)
+>>> newstr
+'nythop'
+
+
+5) Remove spaces from a string :
+>>> str='hello world'
+>>> str
+'hello world'
+>>> str.replace(' ','')
+'helloworld'
+
+
+6) Implementation of Set operations :
+>>> A={0,2,4,6,8}
+>>> B={1,2,3,4,5}
+>>> print("Union of A and B is : ",A|B)
+Union of A and B is :  {0, 1, 2, 3, 4, 5, 6, 8}
+>>> print("Intersection of A and B is : ",A&B)
+Intersection of A and B is :  {2, 4}
+>>> print("Difference of A and B is : ",A-B)
+Difference of A and B is :  {0, 8, 6}
+>>> print("Symmetric difference of A and B is : ",A^B)
+Symmetric difference of A and B is :  {0, 1, 3, 5, 6, 8}
+
+
+7) Print the Area and Circumference of a Circle : 
+>>> import math as m
+>>> radius=int(input())
+5
+>>> print("Circumference of the circle = ",2*m.pi*radius)
+Circumference of the circle =  31.41592653589793
+>>> print("Area of the circle = ",2*m.pi*radius*radius)
+Area of the circle =  157.07963267948966
+
+
+8) Generate a List and a Tuple :
+>>> sequence=input()
+1,2,3,4,5
+>>> t=tuple(sequence.split(","))
+>>> t
+('1', '2', '3', '4', '5')
+>>> l=list(t)
+>>> l
+['1', '2', '3', '4', '5']
+>>> type(t)
+<class 'tuple'>
+>>> type(l)
+<class 'list'>
+
+
+9) Display the following "File name is ---- and file extension is ------" :
+>>> filename=input()
+hello.py
+>>> temp=filename.split(".")
+>>> print("File name is ",temp[0]," and the extension is ",temp[-1])
+File name is  hello  and the extension is  py
+
+
+10) Display the odd numbered indexed colors :
+>>> colors=input().split(",")
+violet,indigo,blue,green,yellow,orange,red
+>>> colors
+['violet', 'indigo', 'blue', 'green', 'yellow', 'orange', 'red']
+>>> print(colors[1:len(colors):2])
+['indigo', 'green', 'orange']
+
+
+11) Compute the Area of the Triangle : 
+>>> base=float(input("Enter the base of the triangle : "))
+Enter the base of the triangle : 10
+>>> height=float(input("Enter the height of the triangle : "))
+Enter the height of the triangle : 15
+>>> print("Area of the triangle = ",0.5*base*height)
+Area of the triangle =  75.0
+
+
+12) Compute the Final amount of Simple Interest :
+>>> p=float(input("Enter the principal amount : "))
+Enter the principal amount : 15000
+>>> r=float(input("Enter the rate of interest : "))
+Enter the rate of interest : 5
+>>> t=float(input("Enter the number of years : "))
+Enter the number of years : 10
+>>> print("Total amount of simple interest = ",(p*t*r)/100)
+Total amount of simple interest =  7500.0
+
+
+13) Calculate BMI (Weight/(Height * Height)) :
+>>> height=float(input("Enter your height in metres : "))
+Enter your height in metres : 1.8
+>>> weight=float(input("Enter your weight in kg : "))
+Enter your weight in kg : 75
+>>> print("Body Mass Index (BMI) = ",weight/(height*height))
+Body Mass Index (BMI) =  23.148148148148145
+
+
+14) Sort three integers without using conditions :
+>>> num=input("Enter three numbers :").split(",")
+Enter three numbers :8,3,15
+>>> results=list(map(int,num))
+>>> results.sort()
+>>> print("Sorted order : ",results)
+Sorted order :  [3, 8, 15]
+
+
+15) Concatenate two tuples :
+>>> tuple1=tuple(input("Enter the elements : ").split(","))
+Enter the elements : a,b,c,d
+>>> tuple2=tuple(input("Enter the elements : ").split(","))
+Enter the elements : 1,2,3,4
+>>> print("Concatenation of two tuples : ",tuple1+tuple2)
+Concatenation of two tuples :  ('a', 'b', 'c', 'd', '1', '2', '3', '4')
+
+
+16) Create a tuple of two tuples :
+>>> tuple1=tuple(input("Enter the elements : ").split(","))
+Enter the elements : a,b,c,d
+>>> tuple2=tuple(input("Enter the elements : ").split(","))
+Enter the elements : 1,2,3,4
+>>> tuple3=tuple(tuple1+tuple2)
+>>> tuple3
+('a', 'b', 'c', 'd', '1', '2', '3', '4')
+
+
+17) Swap the first two characters of each string :
+>>> str=input("Enter a string : ").split(" ")
+Enter a string : hello world
+>>> len1 = len(str[0])
+>>> len2 = len(str[1])
+>>> print("After swapping :",str[1][:2]+str[0][2:len1],str[0][:2]+str[1][2:len2])
+After swapping : wollo herld
+
+
+18) New string where the second and last but one characters have been exchanged :
+>>> str=input("Enter a string : ")
+Enter a string : python
+>>> new_str=str[0]+str[-2]+str[2:-2]+str[1]+str[-1]
+>>> print("String after swapping characters : ",new_str)
+String after swapping characters :  pothyn
+
+
+19) Print the unique words in sorted form (alphanumerically) :
+>>> strings=input("Enter comma separated alphanumeric strings : ").split(",")
+Enter comma separated alphanumeric strings : str5,str1,tup3,tup2,abc1,abc5
+>>> strings.sort()
+>>> print("After sorting : ",strings)
+After sorting :  ['abc1', 'abc5', 'str1', 'str5', 'tup2', 'tup3']
+

@@ -1,0 +1,23 @@
+TEST CASE TEMPLATE :
+
+Test Suite ID
+Test Case ID
+Test Case Summary
+Related Requirement
+Pre-requisite
+Test Procedure
+Expected Result
+Actual Result
+Status
+Remarks
+Created By
+Date of Creation
+Executed By
+Date of Execution
+Test Environment
+
+
+
+ 
+
+

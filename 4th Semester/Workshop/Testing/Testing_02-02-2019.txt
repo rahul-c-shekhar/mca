@@ -1,0 +1,89 @@
+Date : 02/02/2019
+
+--> Handling the List box / Dropdown list 
+- If the List box is developed by using <select> tag then we can handle that List box by using Select class
+- Select class contains a constructor which takes an argument of type WebElement where in we have to pass address of the List box
+- Select class contains different methods. They are :
+    - selectByIndex(int)
+    - selectByValue(String)
+    - selectByVisibleText(String)
+    - deselectByIndex(int)
+    - deselectByValue(String)
+    - deselectByVisibleText(String)
+    - deselectAll()
+    - getAllSelectedOptions()
+    - getFirstSelectedOption()
+    - getOptions()
+    - isMultiple()
+
+--> Note :
+- All the above methods are non-static methods 
+- Value and Visible Text are case sensitive
+- If we pass invalid arguments, then it will throw No Such Element Exception
+- In single select List box if the specified option is duplicate then it will select the first matching option
+- We can handle the duplicate options by using index 
+- In single select List box we cannot deselect the options
+- If we try to deselect the options then it will throw Unsupported Operation Exception
+- We can deselect all the selected options by using the method deselectAll() 
+- In multi-select List box if the specified option is duplicate then it will select all the matching options 
+- We can handle the duplicate options by using the index
+- We can check whether the List box is single select or multi-select by using the method isMultiple()
+- We can get all the selected options from the List box by using the method getAllSelectedOptions() 
+- We can get the first selected option by using the method getFirstSelectedOption()
+- We can get all the options from the List box using getOptions()
+
+--> Actions class :
+- Actions is a class used to handle mouse actions 
+- Actions class contains a constructor which takes an argument of type WebDriver
+- When we place the cursor on some elements, list of menus will be displayed 
+- These type of elements are called as Dropdown menus
+- We can handle Dropdown menus by using moveToElement() of Actions class
+
+--> Note :
+- When we are performing any actions using Actions class then it is mandatory to call perform()
+
+--> Handling Drag and Drop actions :
+- We can handle Drag and Drop actions by using dragAndDrop() of Actions class
+- dragAndDrop() takes 2 arguments of type WebElement. They are :
+    - src
+    - target
+
+--> Handling double click actions :
+- We can handle double click action by using doubleClick() of Actions class
+
+--> Context click :
+- Right clicking on an element is called as Context click
+- After right clicking on an element, the options which are displayed are called as Context menus
+- We can handle right click action by using contextClick() of Actions class
+
+--> Set :
+- It is an interface which inherits from Collection interface
+- It is implemented by the classes :
+    - HashSet
+    - LinkedHashSet
+    - TreeSet
+- In Set :
+    - Duplicates are not allowed
+    - We can store null values only once
+    - It does not follow insertion order
+    - The data will be stored randomly 
+    - It is not an index based Collection
+- We can add the data by using add()
+- We can get the size by using size()
+- We can remove the data by using remove()
+
+
+--> Child browsers
+- We can handle child browsers by using getWindowHandles()
+
+--> Difference between getWindowHandle() and getWindowHandles() :
+- getWindowHandle() :
+    - The return type is String
+    - It returns address of parent window 
+-getWindowHandles() :
+    - The return type is Set of String
+    - It returns the address of all the windows 
+- We can switch from one window to another window by using the switchTo() Eg. : driver.switchTo().window(address)
+
+
+Facebook Group : Automation Guru
